@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -15,11 +17,20 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
+        debug {
+            buildConfigField('String' , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f0")
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            buildConfigField('String' , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f0")
         }
     }
+
+
 }
 
 dependencies {
@@ -34,5 +45,13 @@ dependencies {
 
     //Networking Library
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+
+    //Java to JSN+ON library
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    //Dagger2
+    implementation 'com.google.dagger:dagger:2.16'
+    kapt 'com.google.dagger:dagger-compiler:2.16'
 
 }
