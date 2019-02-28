@@ -19,14 +19,14 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField('String' , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f0")
+            buildConfigField("String" , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f")
         }
 
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField('String' , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f0")
+            buildConfigField("String" , "TMDB_Api" , "0df6b45d76ac1a9e96a70e79c0c808f0")
         }
     }
 
