@@ -11,7 +11,7 @@ class OkHttpClient {
             //Add Application interceptor to add tmdb api key to all the request
             .addInterceptor {
 
-                //build a new okhttp Url with api key
+                //build a new ok http Url with api key
                 val newUrl = it.request()
                     .url()
                     .newBuilder()
