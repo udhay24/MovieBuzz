@@ -3,9 +3,13 @@ package com.example.moviebuzz.Repository
 import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Inject
+import javax.inject.Singleton
 
-object OkHttpClient {
+@Singleton
+class OkHttpClient {
 
+    @Inject
     fun getOkHttpClient(): OkHttpClient{
 
         return OkHttpClient.Builder()
