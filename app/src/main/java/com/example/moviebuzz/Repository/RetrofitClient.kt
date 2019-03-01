@@ -1,20 +1,17 @@
 package com.example.moviebuzz.Repository
 
-import com.example.moviebuzz.Repository.OkHttpClient
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitClient{
+object RetrofitClient{
 
-    fun getRetrofitClient(): Retrofit{
+    val retrofit: Retrofit by lazy {
 
-        return Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+        Retrofit.Builder()
+            .baseUrl("https://api.themoviedb.org/")
             .addConverterFactory(GsonConverterFactory.create())
-            .client(OkHttpClient().getOkHttpClient())
+            .client(OkHttpClient.getOkHttpClient())
             .build()
-
     }
+
 }

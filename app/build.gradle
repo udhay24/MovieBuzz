@@ -50,4 +50,6 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.16'
     // JSON Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
 }

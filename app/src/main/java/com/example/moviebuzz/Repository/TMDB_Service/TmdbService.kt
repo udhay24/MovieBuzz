@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface TmdbService {
 
-    @GET("movie/popular")
+    @GET("/3/movie/popular")
     fun getPopularMovies(): Call<PopularMovie>
 }

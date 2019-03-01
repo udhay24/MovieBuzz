@@ -1,8 +1,10 @@
 package com.example.moviebuzz.Repository
 
+import android.util.Log
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
-class OkHttpClient {
+object OkHttpClient {
 
     fun getOkHttpClient(): OkHttpClient{
 
@@ -25,6 +27,7 @@ class OkHttpClient {
 
                 it.proceed(newRequest)
             }
+            .addNetworkInterceptor(HttpLoggingInterceptor())
             .build()
     }
 }
