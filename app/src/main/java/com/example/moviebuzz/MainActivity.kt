@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.example.moviebuzz.Repository.RetrofitClient
 import com.example.moviebuzz.Repository.TMDB_Service.TmdbService
 import com.example.moviebuzz.Repository.model.PopularMovie
-import com.example.moviebuzz.di.DaggerNetworkComponent
+import com.example.moviebuzz.di.DaggerRetrofitComponent
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,11 +17,14 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    val retrofit: Retrofit = DaggerNetworkComponent.create().getRetrofitClient()
+    @Inject
+    lateinit var retrofit: Retrofit
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        DaggerRetrofitComponent.create().inject(this)
 
         retrofit.create(TmdbService::class.java)
             .getPopularMovies()
