@@ -51,5 +51,9 @@ dependencies {
     // JSON Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
+    //Logging Interceptor
     implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    //coroutines call adapter for retrofit
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 }

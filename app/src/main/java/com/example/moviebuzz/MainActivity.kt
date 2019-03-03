@@ -2,13 +2,13 @@ package com.example.moviebuzz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import com.example.moviebuzz.Repository.RetrofitClient
+import androidx.annotation.UiThread
+import com.example.moviebuzz.Repository.Repository
 import com.example.moviebuzz.Repository.TMDB_Service.TmdbService
 import com.example.moviebuzz.Repository.model.PopularMovie
 import com.example.moviebuzz.di.DaggerRetrofitComponent
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var retrofit: Retrofit
+    lateinit var repository: Repository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         DaggerRetrofitComponent.create().inject(this)
 
-        retrofit.create(TmdbService::class.java)
-            .getPopularMovies()
-            .enqueue(object : Callback<PopularMovie> {
-                override fun onFailure(call: Call<PopularMovie>, t: Throwable) {
+        runBlocking {
 
-                    Toast.makeText(this@MainActivity , "Failed" , Toast.LENGTH_LONG).show()
-                }
-
-                override fun onResponse(call: Call<PopularMovie>, response: Response<PopularMovie>) {
-
-                    Toast.makeText(this@MainActivity , response.body()?.results?.size.toString() , Toast.LENGTH_SHORT).show()
-                }
-            })
-
+            Toast.makeText(this@MainActivity , "${repository.getPopularMovies().results.size}" , Toast.LENGTH_SHORT).show()
+        }
     }
 }
