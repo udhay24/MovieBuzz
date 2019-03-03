@@ -5,7 +5,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Call
 import retrofit2.http.GET
 
-interface TmdbService {
+interface MovieService {
 
     @GET("movie/popular")
     fun getPopularMoviesAsync(): Deferred<PopularMovie>

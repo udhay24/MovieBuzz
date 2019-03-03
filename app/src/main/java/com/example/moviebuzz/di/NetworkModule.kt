@@ -1,6 +1,7 @@
 package com.example.moviebuzz.di
 
-import com.example.moviebuzz.Repository.TMDB_API_KEY
+import com.example.moviebuzz.Repository.TMDB_Service.MovieService
+import com.example.moviebuzz.Repository.repository.TMDB_API_KEY
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -8,11 +9,12 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Scope
+import javax.inject.Singleton
 
 @Module
-class RetrofitModule{
+class NetworkModule{
 
+    @Singleton
     @Provides
     fun getHttpLoggingInterceptor(): HttpLoggingInterceptor{
 
@@ -22,6 +24,7 @@ class RetrofitModule{
         return httpLoggingInterceptor
     }
 
+    @Singleton
     @Provides
     fun getOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
 
@@ -43,6 +46,7 @@ class RetrofitModule{
             .build()
     }
 
+    @Singleton
     @Provides
     fun getRetrofitClient(okHttpClient: OkHttpClient): Retrofit{
 
@@ -54,5 +58,11 @@ class RetrofitModule{
             .build()
     }
 
+    @Singleton
+    @Provides
+    fun getMovieService(retrofit: Retrofit): MovieService{
+
+        return retrofit.create(MovieService::class.java)
+    }
 }
 
