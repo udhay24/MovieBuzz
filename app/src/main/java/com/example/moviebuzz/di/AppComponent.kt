@@ -7,7 +7,8 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [NetworkModule::class])
+@Component(modules = [NetworkModule::class,
+ViewModelModule::class])
 interface AppComponent {
 
     fun inject(mainActivity: MainActivity)

@@ -11,8 +11,8 @@ class MovieRepository
 @Inject constructor(private val movieService: MovieService)
     :Repository{
 
-    suspend fun getPopularMoviesAsync(): PopularMovie{
+    fun getPopularMoviesAsync(): Deferred<PopularMovie>{
 
-        return movieService.getPopularMoviesAsync().await()
+        return movieService.getPopularMoviesAsync()
     }
 }
