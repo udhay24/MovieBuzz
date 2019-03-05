@@ -1,4 +1,4 @@
-package com.example.moviebuzz.Repository.model
+package com.example.moviebuzz.repository.model
 
 data class PopularMovie(
     val page: Int,

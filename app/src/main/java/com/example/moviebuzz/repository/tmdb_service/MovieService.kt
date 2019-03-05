@@ -1,12 +1,12 @@
-package com.example.moviebuzz.Repository.TMDB_Service
+package com.example.moviebuzz.repository.tmdb_service
 
-import com.example.moviebuzz.Repository.model.PopularMovie
+import com.example.moviebuzz.repository.model.PopularMovie
 import kotlinx.coroutines.Deferred
-import retrofit2.Call
 import retrofit2.http.GET
 
 interface MovieService {
 
     @GET("movie/popular")
     fun getPopularMoviesAsync(): Deferred<PopularMovie>
+
 }

@@ -5,14 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.example.moviebuzz.Repository.TMDB_Service.MovieService
-import com.example.moviebuzz.Repository.repository.Repository
-import com.example.moviebuzz.di.AppComponent
 import com.example.moviebuzz.di.DaggerAppComponent
-import com.example.moviebuzz.factory.ViewModelFactory
 import com.example.moviebuzz.ui.MovieViewModel
 import kotlinx.coroutines.*
-import java.util.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {

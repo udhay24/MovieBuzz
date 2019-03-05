@@ -1,7 +1,7 @@
-package com.example.moviebuzz.Repository.repository
+package com.example.moviebuzz.repository.network
 
-import com.example.moviebuzz.Repository.TMDB_Service.MovieService
-import com.example.moviebuzz.Repository.model.PopularMovie
+import com.example.moviebuzz.repository.tmdb_service.MovieService
+import com.example.moviebuzz.repository.model.PopularMovie
 import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 import javax.inject.Singleton

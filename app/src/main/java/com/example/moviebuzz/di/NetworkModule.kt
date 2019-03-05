@@ -1,7 +1,7 @@
 package com.example.moviebuzz.di
 
-import com.example.moviebuzz.Repository.TMDB_Service.MovieService
-import com.example.moviebuzz.Repository.repository.TMDB_API_KEY
+import com.example.moviebuzz.repository.tmdb_service.MovieService
+import com.example.moviebuzz.repository.network.TMDB_API_KEY
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
