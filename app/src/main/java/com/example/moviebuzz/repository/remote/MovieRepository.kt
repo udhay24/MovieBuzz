@@ -1,4 +1,4 @@
-package com.example.moviebuzz.repository.network
+package com.example.moviebuzz.repository.remote
 
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import com.example.moviebuzz.repository.model.PopularMovie
