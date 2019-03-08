@@ -1,6 +1,7 @@
 package com.example.moviebuzz.di
 
-import com.example.moviebuzz.MainActivity
+import com.example.moviebuzz.ui.MainActivity
+import com.example.moviebuzz.ui.moviefragment.MovieFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -9,6 +10,6 @@ import javax.inject.Singleton
 ViewModelModule::class])
 interface AppComponent {
 
-    fun inject(mainActivity: MainActivity)
+    fun inject(fragment: MovieFragment)
 
 }

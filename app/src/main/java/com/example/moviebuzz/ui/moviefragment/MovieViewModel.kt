@@ -1,4 +1,4 @@
-package com.example.moviebuzz.ui
+package com.example.moviebuzz.ui.moviefragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

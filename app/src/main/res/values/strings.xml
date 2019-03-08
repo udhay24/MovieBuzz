@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie Buzz</string>
+    <string name="popular_movies">Popular Movies</string>
+    <string name="trending">Trending</string>
 </resources>

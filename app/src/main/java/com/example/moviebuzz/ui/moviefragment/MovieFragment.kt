@@ -1,4 +1,4 @@
-package com.example.moviebuzz.ui
+package com.example.moviebuzz.ui.moviefragment
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.moviebuzz.MainActivity
 
 import com.example.moviebuzz.R
+import com.example.moviebuzz.di.DaggerAppComponent
+import com.example.moviebuzz.factory.ViewModelFactory
+import javax.inject.Inject
 
 class MovieFragment : Fragment() {
 
@@ -16,18 +18,25 @@ class MovieFragment : Fragment() {
         fun newInstance() = MovieFragment()
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private lateinit var viewModel: MovieViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        //Inject required dependency
+        DaggerAppComponent.create().inject(this)
+
         return inflater.inflate(R.layout.movie_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(MovieViewModel::class.java)
+        viewModel = ViewModelProviders.of(this , viewModelFactory).get(MovieViewModel::class.java)
     }
 
 }

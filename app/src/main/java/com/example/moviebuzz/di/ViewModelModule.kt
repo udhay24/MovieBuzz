@@ -3,10 +3,9 @@ package com.example.moviebuzz.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviebuzz.factory.ViewModelFactory
-import com.example.moviebuzz.ui.MovieViewModel
+import com.example.moviebuzz.ui.moviefragment.MovieViewModel
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Suppress("unused")

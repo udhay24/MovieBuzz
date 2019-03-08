@@ -61,5 +61,6 @@ dependencies {
 
     //ktx for android
     implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 
 }

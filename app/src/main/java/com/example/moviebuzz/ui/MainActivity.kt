@@ -1,12 +1,13 @@
-package com.example.moviebuzz
+package com.example.moviebuzz.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.example.moviebuzz.R
 import com.example.moviebuzz.di.DaggerAppComponent
-import com.example.moviebuzz.ui.MovieViewModel
+import com.example.moviebuzz.ui.moviefragment.MovieViewModel
 import kotlinx.coroutines.*
 import javax.inject.Inject
 
