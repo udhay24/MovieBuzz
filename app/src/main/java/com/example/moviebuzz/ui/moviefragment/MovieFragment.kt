@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.moviebuzz.R
 import com.example.moviebuzz.di.DaggerAppComponent
 import com.example.moviebuzz.factory.ViewModelFactory
+import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
 class MovieFragment : Fragment() {
@@ -28,8 +29,7 @@ class MovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //Inject required dependency
-        DaggerAppComponent.create().inject(this)
+       AndroidSupportInjection.inject(this)
 
         return inflater.inflate(R.layout.movie_fragment, container, false)
     }

@@ -40,8 +40,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha02'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.2-alpha01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.2-alpha01'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
     //Networking Library
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
@@ -50,6 +50,10 @@ dependencies {
     //Dagger2
     implementation 'com.google.dagger:dagger:2.20'
     kapt 'com.google.dagger:dagger-compiler:2.20'
+    implementation 'com.google.dagger:dagger:2.20'
+    implementation 'com.google.dagger:dagger-android-support:2.20'
+    kapt 'com.google.dagger:dagger-android-processor:2.20'
+
     // JSON Converter
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
@@ -62,5 +66,4 @@ dependencies {
     //ktx for android
     implementation 'androidx.core:core-ktx:1.0.1'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
-
 }
