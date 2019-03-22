@@ -10,11 +10,12 @@ import javax.inject.Inject
 class MovieViewModel
     @Inject constructor(private val movieRepository: MovieRepository) : ViewModel() {
 
-    val popularMovies: MutableLiveData<Deferred<PopularMovie>> = MutableLiveData()
+    val popularMovies: MutableLiveData<PopularMovie> = MutableLiveData()
 
     init {
 
-            popularMovies.value = movieRepository.getPopularMoviesAsync()
+        GlobalScope.launch {
+            popularMovies.postValue(movieRepository.getPopularMoviesAsync().await())
         }
-
+    }
 }
