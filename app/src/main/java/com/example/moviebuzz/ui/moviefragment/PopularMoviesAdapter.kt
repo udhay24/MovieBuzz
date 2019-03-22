@@ -8,8 +8,9 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
 import com.example.moviebuzz.repository.model.PopularMovie
+import com.squareup.picasso.Picasso
 
-class PopularMoviesAdapter(private val context: Context,
+class PopularMoviesAdapter(private val context: Context?,
                            private val popularMovie: PopularMovie)
     : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
@@ -27,6 +28,11 @@ class PopularMoviesAdapter(private val context: Context,
 
     override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
 
+        val url = "https://image.tmdb.org/t/p/w500${popularMovie.results[position].poster_path}"
+
+        Picasso.get()
+            .load(url)
+            .into(holder.imageView)
     }
 
     class PopularMoviesViewHolder(private val view: View): RecyclerView.ViewHolder(view){

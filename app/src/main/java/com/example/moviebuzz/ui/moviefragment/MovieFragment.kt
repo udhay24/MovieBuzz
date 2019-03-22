@@ -2,16 +2,15 @@ package com.example.moviebuzz.ui.moviefragment
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.example.moviebuzz.R
-import com.example.moviebuzz.di.DaggerAppComponent
 import com.example.moviebuzz.factory.ViewModelFactory
 import com.example.moviebuzz.repository.model.PopularMovie
 import dagger.android.support.AndroidSupportInjection
@@ -53,6 +52,6 @@ class MovieFragment : Fragment() {
     private fun setUpPopularMovieView(popularMovie: PopularMovie){
 
         popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-
+        popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovie)
     }
 }
