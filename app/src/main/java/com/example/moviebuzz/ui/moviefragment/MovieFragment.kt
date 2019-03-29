@@ -35,6 +35,8 @@ class MovieFragment : Fragment() {
 
        AndroidSupportInjection.inject(this)
 
+        viewModel = ViewModelProviders.of(this , viewModelFactory).get(MovieViewModel::class.java)
+
         //register for popular movies
         viewModel.popularMovies.observe(this,
             Observer<PopularMovie> {
@@ -42,11 +44,6 @@ class MovieFragment : Fragment() {
             })
 
         return inflater.inflate(R.layout.movie_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this , viewModelFactory).get(MovieViewModel::class.java)
     }
 
     private fun setUpPopularMovieView(popularMovie: PopularMovie){

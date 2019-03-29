@@ -14,7 +14,8 @@ import javax.inject.Singleton
 @Component(modules = [ AndroidInjectionModule::class,
     NetworkModule::class,
     ViewModelModule::class,
-    ActivityBuilder::class ])
+    ActivityBuilder::class,
+    ApplicationModule::class])
 
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
