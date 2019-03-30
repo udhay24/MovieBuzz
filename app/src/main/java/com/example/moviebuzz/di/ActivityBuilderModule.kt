@@ -1,6 +1,6 @@
 package com.example.moviebuzz.di
 
-import com.example.moviebuzz.ui.MainActivity
+import com.example.moviebuzz.ui.mainactivity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -1,4 +1,4 @@
-package com.example.moviebuzz.ui
+package com.example.moviebuzz.ui.mainactivity
 
 import com.example.moviebuzz.ui.moviefragment.MovieFragment
 import dagger.Module

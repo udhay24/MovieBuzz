@@ -1,5 +1,6 @@
 package com.example.moviebuzz.repository.remote
 
+import com.example.moviebuzz.repository.model.NowPlayingMovie
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import com.example.moviebuzz.repository.model.PopularMovie
 import kotlinx.coroutines.Deferred
@@ -9,8 +10,7 @@ import javax.inject.Singleton
 class MovieRepository constructor(private val movieService: MovieService)
     :Repository{
 
-    fun getPopularMoviesAsync(): Deferred<PopularMovie>{
+    fun getPopularMoviesAsync(): Deferred<PopularMovie> = movieService.getPopularMoviesAsync()
 
-        return movieService.getPopularMoviesAsync()
-    }
+    fun getNowPlayingMovies(): Deferred<NowPlayingMovie> = movieService.getNowPlayingMoviesAsync()
 }

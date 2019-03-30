@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.moviebuzz.R
 import com.example.moviebuzz.factory.ViewModelFactory
+import com.example.moviebuzz.repository.model.NowPlayingMovie
 import com.example.moviebuzz.repository.model.PopularMovie
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.movie_fragment.*
@@ -43,6 +44,12 @@ class MovieFragment : Fragment() {
                 setUpPopularMovieView(it)
             })
 
+        //register for noe playong movies
+        viewModel.nowPlayingMovies.observe(this,
+            Observer{
+
+        })
+
         return inflater.inflate(R.layout.movie_fragment, container, false)
     }
 
@@ -50,5 +57,11 @@ class MovieFragment : Fragment() {
 
         popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovie)
+    }
+
+    private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
+
+        now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+
     }
 }

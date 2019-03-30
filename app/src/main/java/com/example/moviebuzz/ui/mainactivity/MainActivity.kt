@@ -1,4 +1,4 @@
-package com.example.moviebuzz.ui
+package com.example.moviebuzz.ui.mainactivity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
