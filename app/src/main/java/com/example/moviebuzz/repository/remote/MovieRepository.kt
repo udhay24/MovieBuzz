@@ -6,9 +6,7 @@ import kotlinx.coroutines.Deferred
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class MovieRepository
-@Inject constructor(private val movieService: MovieService)
+class MovieRepository constructor(private val movieService: MovieService)
     :Repository{
 
     fun getPopularMoviesAsync(): Deferred<PopularMovie>{
