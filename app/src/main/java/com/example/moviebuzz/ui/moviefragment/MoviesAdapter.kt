@@ -43,8 +43,8 @@ class PopularMoviesAdapter(private val context: Context?,
     }
 }
 
-class NowPlayingMoviesAdapter(private val nowPlayingMovie: NowPlayingMovie,
-                              private val context: Context)
+class NowPlayingMoviesAdapter(private val context: Context?,
+                              private val nowPlayingMovie: NowPlayingMovie)
     :RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMovieViewHolder>(){
 
 

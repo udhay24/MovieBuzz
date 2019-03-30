@@ -47,7 +47,7 @@ class MovieFragment : Fragment() {
         //register for noe playong movies
         viewModel.nowPlayingMovies.observe(this,
             Observer{
-
+            setUpNowPlayingMovies(it)
         })
 
         return inflater.inflate(R.layout.movie_fragment, container, false)
@@ -62,6 +62,6 @@ class MovieFragment : Fragment() {
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
 
         now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
+        now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
     }
 }
