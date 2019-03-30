@@ -30,7 +30,7 @@ class PopularMoviesAdapter(private val context: Context?,
 
     override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
 
-        val url = "https://image.tmdb.org/t/p/w500${popularMovie.results[position].poster_path}"
+        val url = "https://image.tmdb.org/t/p/w400${popularMovie.results[position].poster_path}"
 
         Picasso.get()
             .load(url)
@@ -63,7 +63,7 @@ class NowPlayingMoviesAdapter(private val context: Context?,
 
     override fun onBindViewHolder(holder: NowPlayingMovieViewHolder, position: Int) {
 
-        val posterUrl = "https://image.tmdb.org/t/p/w500${nowPlayingMovie.results[position].poster_path}"
+        val posterUrl = "https://image.tmdb.org/t/p/w200${nowPlayingMovie.results[position].poster_path}"
         val movieName = nowPlayingMovie.results[position].title
 
         //set poster image
