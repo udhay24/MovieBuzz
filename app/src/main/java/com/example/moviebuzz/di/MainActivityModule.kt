@@ -10,6 +10,6 @@ import retrofit2.Retrofit
 @Module
 abstract class MainActivityModule {
 
-    @ContributesAndroidInjector(modules = [MovieFragmentModule::class])
+    @ContributesAndroidInjector
     abstract fun contributesMovieFragment(): MovieFragment
 }

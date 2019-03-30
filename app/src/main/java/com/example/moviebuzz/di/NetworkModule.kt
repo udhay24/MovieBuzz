@@ -1,5 +1,6 @@
 package com.example.moviebuzz.di
 
+import com.example.moviebuzz.repository.remote.MovieRepository
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import com.example.moviebuzz.repository.remote.TMDB_API_KEY
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
@@ -64,5 +65,9 @@ class NetworkModule{
 
         return retrofit.create(MovieService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun providesMovieRepository(movieService: MovieService): MovieRepository = MovieRepository(movieService)
 }
 
