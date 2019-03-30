@@ -7,7 +7,7 @@ import dagger.android.DaggerApplication
 class MovieBuzzApplication: DaggerApplication() {
 
     private val appComponent = DaggerAppComponent.builder()
-        .application(this)
+        .bindsApplication(this)
         .build()
 
     override fun onCreate() {
@@ -19,6 +19,4 @@ class MovieBuzzApplication: DaggerApplication() {
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         return appComponent
     }
-
-
 }
