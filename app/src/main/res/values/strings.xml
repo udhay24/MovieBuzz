@@ -2,4 +2,8 @@
     <string name="app_name">Movie Buzz</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="trending">Trending</string>
+    <string name="movies_bottom_nav_title">Movies</string>
+    <string name="tv_shows_bottom_nav_title">Tv Shows</string>
+    <string name="search_bottom_nav_title">Search</string>
+    <string name="about_bottom_nav_title">About</string>
 </resources>
