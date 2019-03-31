@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviebuzz.factory.ViewModelFactory
 import com.example.moviebuzz.ui.moviefragment.MovieViewModel
+import com.example.moviebuzz.ui.searchfragment.SearchViewModel
 import com.example.moviebuzz.ui.tvfragment.TvShowsFragment
 import com.example.moviebuzz.ui.tvfragment.TvShowsViewModel
 import dagger.Binds
@@ -26,4 +27,7 @@ abstract class ViewModelModule {
 
     @Binds
     internal abstract fun bindViewModelFactory(viewModelFactory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    internal abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 }
