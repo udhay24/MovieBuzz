@@ -28,7 +28,6 @@ class TvShowsFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(TvShowsViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

@@ -5,5 +5,4 @@ import javax.inject.Inject
 
 class TvShowsViewModel
     @Inject constructor(): ViewModel() {
-    // TODO: Implement the ViewModel
 }
