@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/main_navigation" app:startDestination="@id/movieFragment">
+
+    <fragment android:id="@+id/movieFragment" android:name="com.example.moviebuzz.ui.moviefragment.MovieFragment"
+              android:label="MovieFragment"/>
+    <fragment android:id="@+id/tvShowsFragment" android:name="com.example.moviebuzz.ui.tvfragment.TvShowsFragment"
+              android:label="TvShowsFragment"/>
+    <fragment android:id="@+id/aboutFragment" android:name="com.example.moviebuzz.ui.aboutfragment.AboutFragment"
+              android:label="AboutFragment"/>
+    <fragment android:id="@+id/searchFragment" android:name="com.example.moviebuzz.ui.searchfragment.SearchFragment"
+              android:label="SearchFragment"/>
+</navigation>
