@@ -1,6 +1,7 @@
 package com.example.moviebuzz.di
 
 import com.example.moviebuzz.repository.tmdb_service.MovieService
+import com.example.moviebuzz.ui.aboutfragment.AboutFragment
 import com.example.moviebuzz.ui.moviefragment.MovieFragment
 import com.example.moviebuzz.ui.searchfragment.SearchFragment
 import com.example.moviebuzz.ui.tvfragment.TvShowsFragment
@@ -20,4 +21,7 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector
     abstract fun contributesSearchFragment(): SearchFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributesAboutFragment(): AboutFragment
 }
