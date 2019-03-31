@@ -5,5 +5,4 @@ import javax.inject.Inject
 
 class SearchViewModel
     @Inject constructor(): ViewModel() {
-    // TODO: Implement the ViewModel
 }
