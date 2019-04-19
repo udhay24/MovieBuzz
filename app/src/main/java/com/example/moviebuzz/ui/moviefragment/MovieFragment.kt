@@ -1,23 +1,22 @@
 package com.example.moviebuzz.ui.moviefragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.moviebuzz.R
 import com.example.moviebuzz.factory.ViewModelFactory
-import com.example.moviebuzz.network.Resource
 import com.example.moviebuzz.repository.model.NowPlayingMovie
 import com.example.moviebuzz.repository.model.PopularMovie
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.movie_fragment.*
+import timber.log.Timber
 import javax.inject.Inject
 
 class MovieFragment : Fragment() {
@@ -39,15 +38,28 @@ class MovieFragment : Fragment() {
         //register for popular movies
         viewModel.popularMovies.observe(this,
             Observer {
-                Log.v("Popular Movies", it.data?.total_results.toString())
+
+                Timber.v("Popular ${it.data?.results?.size ?: "nothing here"}")
+
                 if(it.data != null) {
+
+                    Timber.v("Popular Count ${it.data.results.size}")
+                    Toast.makeText(
+                        this@MovieFragment.context,
+                        "Popular Count ${it.data.results.size}",
+                        Toast.LENGTH_LONG
+                    ).show()
+
                     setUpPopularMovieView(it.data)
+                } else {
+                    Timber.v("Popular is empty ")
+                    Toast.makeText(this@MovieFragment.context, "null", Toast.LENGTH_LONG).show()
                 }
             })
         //register for now playing movies
         viewModel.nowPlayingMovies.observe(this,
             Observer{
-                Log.v("Now Playing Movies", it.data?.total_results.toString())
+
                 if(it.data != null) {
                     setUpNowPlayingMovies(it.data)
                 }

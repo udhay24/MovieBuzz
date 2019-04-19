@@ -4,18 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
+import timber.log.Timber
 
-abstract class NetworkBoundResource<ResultType, RequestType>()
+abstract class NetworkBoundResource<ResultType, RequestType>
     :CoroutineScope by CoroutineScope(Dispatchers.Default){
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
     init {
-        launch {
-            fetchFromNetwork()
-        }
+        fetchFromNetwork()
     }
 
     private fun setValue(value: Resource<ResultType>){
@@ -25,17 +22,12 @@ abstract class NetworkBoundResource<ResultType, RequestType>()
         }
     }
 
-    private suspend fun fetchFromNetwork(){
-
+    private fun fetchFromNetwork() {
         val apiResult = networkCall()
-
         result.addSource(apiResult){ data ->
-
-            result.removeSource(apiResult)
-
+            Timber.v("Called")
             when(data){
                 is ApiSuccessResponse -> {
-
                     setValue(Resource.success(convertToResultType(data.body)))
                 }
             }
@@ -44,7 +36,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>()
 
     fun asLiveData() = result as LiveData<Resource<ResultType>>
 
-    abstract suspend fun networkCall(): LiveData<ApiResponse<RequestType>>
+    abstract fun networkCall(): LiveData<ApiResponse<RequestType>>
 
     abstract fun convertToResultType(requestType: RequestType): ResultType
 
