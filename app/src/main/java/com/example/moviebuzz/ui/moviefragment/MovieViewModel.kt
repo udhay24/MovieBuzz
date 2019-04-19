@@ -1,5 +1,6 @@
 package com.example.moviebuzz.ui.moviefragment
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.moviebuzz.repository.model.NowPlayingMovie
@@ -13,13 +14,8 @@ class MovieViewModel
     @Inject constructor(private val movieRepository: MovieRepository)
     : ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Default){
 
-    val popularMovies: MutableLiveData<PopularMovie> = MutableLiveData()
-    val nowPlayingMovies: MutableLiveData<NowPlayingMovie> = MutableLiveData()
+    val popularMovies = movieRepository.getPopularMoviesAsync()
+    val nowPlayingMovies = movieRepository.getNowPlayingMovies()
 
-    init {
-        launch {
-            popularMovies.postValue(movieRepository.getPopularMoviesAsync().await())
-            nowPlayingMovies.postValue(movieRepository.getNowPlayingMovies().await())
-        }
-    }
+
 }

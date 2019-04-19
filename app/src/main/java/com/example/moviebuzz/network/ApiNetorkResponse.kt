@@ -21,7 +21,7 @@ import java.util.regex.Pattern
 
 /**
  * Common class used by API responses.
- * @param <T> the type of the response object
+ * @param <T> the type of the popularMovieResponse object
 </T> */
 @Suppress("unused") // T is used in extending classes
 sealed class ApiResponse<T> {

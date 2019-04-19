@@ -2,13 +2,20 @@ package com.example.moviebuzz.network
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
-abstract class NetworkBoundResource<ResultType, RequestType> {
+abstract class NetworkBoundResource<ResultType, RequestType>()
+    :CoroutineScope by CoroutineScope(Dispatchers.Default){
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
     init {
-        fetchFromNetwork()
+        launch {
+            fetchFromNetwork()
+        }
     }
 
     private fun setValue(value: Resource<ResultType>){
@@ -18,7 +25,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
         }
     }
 
-    private fun fetchFromNetwork(){
+    private suspend fun fetchFromNetwork(){
 
         val apiResult = networkCall()
 
@@ -37,7 +44,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     fun asLiveData() = result as LiveData<Resource<ResultType>>
 
-    abstract fun networkCall(): LiveData<ApiResponse<RequestType>>
+    abstract suspend fun networkCall(): LiveData<ApiResponse<RequestType>>
 
     abstract fun convertToResultType(requestType: RequestType): ResultType
 

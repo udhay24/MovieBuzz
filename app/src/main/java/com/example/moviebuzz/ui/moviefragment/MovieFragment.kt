@@ -2,6 +2,7 @@ package com.example.moviebuzz.ui.moviefragment
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.example.moviebuzz.R
 import com.example.moviebuzz.factory.ViewModelFactory
+import com.example.moviebuzz.network.Resource
 import com.example.moviebuzz.repository.model.NowPlayingMovie
 import com.example.moviebuzz.repository.model.PopularMovie
 import dagger.android.support.AndroidSupportInjection
@@ -40,14 +42,20 @@ class MovieFragment : Fragment() {
 
         //register for popular movies
         viewModel.popularMovies.observe(this,
-            Observer<PopularMovie> {
-                setUpPopularMovieView(it)
+            Observer {
+                Log.v("Popular Movies", it.data?.total_results.toString())
+                if(it.data != null) {
+                    setUpPopularMovieView(it.data)
+                }
             })
 
-        //register for noe playong movies
+        //register for now playing movies
         viewModel.nowPlayingMovies.observe(this,
             Observer{
-            setUpNowPlayingMovies(it)
+                Log.v("Now Playing Movies", it.data?.total_results.toString())
+                if(it.data != null) {
+                    setUpNowPlayingMovies(it.data)
+                }
         })
 
         return inflater.inflate(R.layout.movie_fragment, container, false)
