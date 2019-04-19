@@ -20,10 +20,8 @@ interface AppComponent: AndroidInjector<DaggerApplication> {
 
     @Component.Builder
     interface Builder {
-
         @BindsInstance
         fun bindsApplication(application: Application): AppComponent.Builder
-
         fun build(): AppComponent
     }
 }
