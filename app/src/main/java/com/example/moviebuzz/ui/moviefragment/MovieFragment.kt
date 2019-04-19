@@ -28,18 +28,14 @@ class MovieFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var viewModel: MovieViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
        AndroidSupportInjection.inject(this)
-
         viewModel = ViewModelProviders.of(this , viewModelFactory).get(MovieViewModel::class.java)
-
         //register for popular movies
         viewModel.popularMovies.observe(this,
             Observer {
@@ -48,7 +44,6 @@ class MovieFragment : Fragment() {
                     setUpPopularMovieView(it.data)
                 }
             })
-
         //register for now playing movies
         viewModel.nowPlayingMovies.observe(this,
             Observer{
@@ -62,13 +57,11 @@ class MovieFragment : Fragment() {
     }
 
     private fun setUpPopularMovieView(popularMovie: PopularMovie){
-
         popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovie)
     }
 
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
-
         now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
     }

@@ -19,31 +19,30 @@ import retrofit2.Response
 class MovieRepository constructor(private val movieService: MovieService)
     :Repository, CoroutineScope by CoroutineScope(Dispatchers.Default){
 
-    var popularMovieResponse: Resource<PopularMovie?> = Resource.loading(null)
 
     fun getPopularMoviesAsync(): LiveData<Resource<PopularMovie>> {
+        var popularMovieResponse: Resource<PopularMovie?> = Resource.loading(null)
+        val popularMovieLiveData = MutableLiveData(popularMovieResponse)
 
         val popularMovie = movieService.getPopularMoviesAsync().enqueue(
             object : Callback<PopularMovie> {
                 override fun onFailure(call: Call<PopularMovie>, t: Throwable) {
-
                     popularMovieResponse = Resource.failure(null, t.message ?: "unknown error")
+                    popularMovieLiveData.postValue(popularMovieResponse)
                 }
 
                 override fun onResponse(call: Call<PopularMovie>, response: Response<PopularMovie>) {
-
-                     popularMovieResponse = Resource.success(response.body())
+                    popularMovieResponse = Resource.success(response.body())
+                    popularMovieLiveData.postValue(popularMovieResponse)
                 }
 
             }
         )
-        val popularMovieLiveData = MutableLiveData(popularMovieResponse)
 
         return popularMovieLiveData as LiveData<Resource<PopularMovie>>
     }
 
     fun getNowPlayingMovies(): LiveData<Resource<NowPlayingMovie>> {
-
         var nowPlayingMoviesResponse: Resource<NowPlayingMovie?> = Resource.loading(null)
         val nowPlayingMovieLiveData = MutableLiveData(nowPlayingMoviesResponse)
 

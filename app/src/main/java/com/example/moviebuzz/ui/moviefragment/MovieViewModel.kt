@@ -16,6 +16,4 @@ class MovieViewModel
 
     val popularMovies = movieRepository.getPopularMoviesAsync()
     val nowPlayingMovies = movieRepository.getNowPlayingMovies()
-
-
 }
