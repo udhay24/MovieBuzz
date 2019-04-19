@@ -11,5 +11,5 @@ class MovieViewModel
     : ViewModel(), CoroutineScope by CoroutineScope(Dispatchers.Default){
 
     val popularMovies = movieRepository.fetchPopularMovies()
-    val nowPlayingMovies = movieRepository.getNowPlayingMovies()
+    val nowPlayingMovies = movieRepository.fetchNowPlayingMovies()
 }

@@ -2,65 +2,55 @@ package com.example.moviebuzz.repository.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moviebuzz.network.*
+import com.example.moviebuzz.network.ApiErrorResponse
+import com.example.moviebuzz.network.ApiResponse
+import com.example.moviebuzz.network.NetworkBoundResource
+import com.example.moviebuzz.network.Resource
 import com.example.moviebuzz.repository.model.NowPlayingMovie
 import com.example.moviebuzz.repository.model.PopularMovie
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import timber.log.Timber
 
 class MovieRepository constructor(private val movieService: MovieService)
     :Repository, CoroutineScope by CoroutineScope(Dispatchers.Default){
 
+    fun fetchNowPlayingMovies(): LiveData<Resource<NowPlayingMovie>> {
+        return object : NetworkBoundResource<NowPlayingMovie, NowPlayingMovie>() {
 
-    fun getPopularMoviesAsync(): LiveData<Resource<PopularMovie>> {
-        var popularMovieResponse: Resource<PopularMovie?> = Resource.loading(null)
-        val popularMovieLiveData = MutableLiveData(popularMovieResponse)
+            override fun networkCall(): LiveData<ApiResponse<NowPlayingMovie>> {
+                val nowPlayingLiveData = MutableLiveData<ApiResponse<NowPlayingMovie>>()
+                movieService.getNowPlayingMovies().enqueue(
+                    object : Callback<NowPlayingMovie> {
 
-        val popularMovie = movieService.getPopularMoviesAsync().enqueue(
-            object : Callback<PopularMovie> {
-                override fun onFailure(call: Call<PopularMovie>, t: Throwable) {
-                    popularMovieResponse = Resource.failure(null, t.message ?: "unknown error")
-                    popularMovieLiveData.postValue(popularMovieResponse)
-                }
+                        override fun onFailure(call: Call<NowPlayingMovie>, t: Throwable) {
+                            nowPlayingLiveData.postValue(ApiErrorResponse(t.message ?: "Unknown Error"))
+                        }
 
-                override fun onResponse(call: Call<PopularMovie>, response: Response<PopularMovie>) {
-                    popularMovieResponse = Resource.success(response.body())
-                    popularMovieLiveData.postValue(popularMovieResponse)
-                }
-
+                        override fun onResponse(call: Call<NowPlayingMovie>, response: Response<NowPlayingMovie>) {
+                            nowPlayingLiveData.postValue(
+                                ApiResponse.create(response)
+                            )
+                        }
+                    }
+                )
+                return nowPlayingLiveData
             }
-        )
 
-        return popularMovieLiveData as LiveData<Resource<PopularMovie>>
-    }
-
-    fun getNowPlayingMovies(): LiveData<Resource<NowPlayingMovie>> {
-        var nowPlayingMoviesResponse: Resource<NowPlayingMovie?> = Resource.loading(null)
-        val nowPlayingMovieLiveData = MutableLiveData(nowPlayingMoviesResponse)
-
-        launch {
-            val nowPlayingMovie = movieService.getNowPlayingMoviesAsync().await()
-            nowPlayingMoviesResponse = Resource.success(nowPlayingMovie)
-            nowPlayingMovieLiveData.postValue(nowPlayingMoviesResponse)
-        }
-
-        return nowPlayingMovieLiveData as LiveData<Resource<NowPlayingMovie>>
+            override fun convertToResultType(requestType: NowPlayingMovie): NowPlayingMovie = requestType
+        }.asLiveData()
     }
 
     fun fetchPopularMovies(): LiveData<Resource<PopularMovie>> {
         return object : NetworkBoundResource<PopularMovie, PopularMovie>() {
 
             override fun networkCall(): LiveData<ApiResponse<PopularMovie>> {
-
                 val popularMovieLiveData = MutableLiveData<ApiResponse<PopularMovie>>()
 
-                movieService.getPopularMoviesAsync().enqueue(
+                movieService.getPopularMovies().enqueue(
                     object : Callback<PopularMovie> {
 
                         override fun onFailure(call: Call<PopularMovie>, t: Throwable) {
