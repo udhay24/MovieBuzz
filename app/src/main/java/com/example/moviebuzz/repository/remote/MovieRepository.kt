@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import timber.log.Timber
 
 class MovieRepository constructor(private val movieService: MovieService)
     :Repository, CoroutineScope by CoroutineScope(Dispatchers.Default){
@@ -56,21 +57,22 @@ class MovieRepository constructor(private val movieService: MovieService)
         return object : NetworkBoundResource<PopularMovie, PopularMovie>() {
 
             override fun networkCall(): LiveData<ApiResponse<PopularMovie>> {
-                var apiResponse: ApiResponse<PopularMovie> = ApiEmptyResponse()
+
+                val popularMovieLiveData = MutableLiveData<ApiResponse<PopularMovie>>()
 
                 movieService.getPopularMoviesAsync().enqueue(
                     object : Callback<PopularMovie> {
 
                         override fun onFailure(call: Call<PopularMovie>, t: Throwable) {
-                            apiResponse = ApiErrorResponse(t.message ?: "Unknown error")
+                            popularMovieLiveData.postValue(ApiErrorResponse(t.message ?: "Unknown error"))
                         }
 
                         override fun onResponse(call: Call<PopularMovie>, response: Response<PopularMovie>) {
-                            apiResponse = ApiResponse.create(response)
+                            popularMovieLiveData.postValue(ApiResponse.create(response))
                         }
                     }
                 )
-                return MutableLiveData<ApiResponse<PopularMovie>>(apiResponse)
+                return popularMovieLiveData
             }
 
             override fun convertToResultType(requestType: PopularMovie): PopularMovie = requestType

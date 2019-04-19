@@ -25,10 +25,13 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     private fun fetchFromNetwork() {
         val apiResult = networkCall()
         result.addSource(apiResult){ data ->
-            Timber.v("Called")
+            result.removeSource(apiResult)
             when(data){
                 is ApiSuccessResponse -> {
                     setValue(Resource.success(convertToResultType(data.body)))
+                }
+                else -> {
+                    Timber.v("Api response Type ${data.javaClass.canonicalName}")
                 }
             }
         }

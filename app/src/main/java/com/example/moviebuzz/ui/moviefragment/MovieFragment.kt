@@ -35,28 +35,16 @@ class MovieFragment : Fragment() {
     ): View? {
        AndroidSupportInjection.inject(this)
         viewModel = ViewModelProviders.of(this , viewModelFactory).get(MovieViewModel::class.java)
-        //register for popular movies
+
         viewModel.popularMovies.observe(this,
             Observer {
-
-                Timber.v("Popular ${it.data?.results?.size ?: "nothing here"}")
-
                 if(it.data != null) {
-
-                    Timber.v("Popular Count ${it.data.results.size}")
-                    Toast.makeText(
-                        this@MovieFragment.context,
-                        "Popular Count ${it.data.results.size}",
-                        Toast.LENGTH_LONG
-                    ).show()
-
                     setUpPopularMovieView(it.data)
                 } else {
-                    Timber.v("Popular is empty ")
-                    Toast.makeText(this@MovieFragment.context, "null", Toast.LENGTH_LONG).show()
+                    Timber.v("Popular movie list is empty ")
                 }
             })
-        //register for now playing movies
+
         viewModel.nowPlayingMovies.observe(this,
             Observer{
 
