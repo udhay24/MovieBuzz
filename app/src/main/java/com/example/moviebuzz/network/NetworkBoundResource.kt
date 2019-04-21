@@ -25,7 +25,7 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     private fun fetchFromNetwork() {
         val apiResult = networkCall()
         result.addSource(apiResult){ data ->
-            result.removeSource(apiResult)
+            //            result.removeSource(apiResult)
             when(data){
                 is ApiSuccessResponse -> {
                     setValue(Resource.success(convertToResultType(data.body)))

@@ -2,7 +2,9 @@ package com.example.moviebuzz.di
 
 import com.example.moviebuzz.repository.remote.MovieRepository
 import com.example.moviebuzz.repository.remote.TMDB_API_KEY
+import com.example.moviebuzz.repository.remote.TvRepository
 import com.example.moviebuzz.repository.tmdb_service.MovieService
+import com.example.moviebuzz.repository.tmdb_service.TvService
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -64,5 +66,17 @@ class NetworkModule{
     @Singleton
     @Provides
     fun providesMovieRepository(movieService: MovieService): MovieRepository = MovieRepository(movieService)
+
+    @Singleton
+    @Provides
+    fun getTvService(retrofit: Retrofit): TvService {
+        return retrofit.create(TvService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesTvRepository(tvService: TvService): TvRepository {
+        return TvRepository(tvService)
+    }
 }
 
