@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import timber.log.Timber
 
 abstract class NetworkBoundResource<ResultType, RequestType>
     :CoroutineScope by CoroutineScope(Dispatchers.Default){
@@ -30,8 +29,11 @@ abstract class NetworkBoundResource<ResultType, RequestType>
                 is ApiSuccessResponse -> {
                     setValue(Resource.success(convertToResultType(data.body)))
                 }
-                else -> {
-                    Timber.v("Api response Type ${data.javaClass.canonicalName}")
+                is ApiEmptyResponse -> {
+                    setValue(Resource.loading(null))
+                }
+                is ApiErrorResponse -> {
+                    setValue(Resource.failure(null, data.errorMessage))
                 }
             }
         }
