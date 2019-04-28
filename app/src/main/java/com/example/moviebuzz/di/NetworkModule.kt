@@ -19,7 +19,7 @@ class NetworkModule{
 
     @Singleton
     @Provides
-    fun getHttpLoggingInterceptor(): HttpLoggingInterceptor{
+    fun getHttpLoggingInterceptor(): HttpLoggingInterceptor {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -28,12 +28,12 @@ class NetworkModule{
 
     @Singleton
     @Provides
-    fun getOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient{
+    fun getOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor {
                 val newUrl = it.request().url()
                     .newBuilder()
-                    .addQueryParameter("api_key" , TMDB_API_KEY)
+                    .addQueryParameter("api_key", TMDB_API_KEY)
                     .build()
 
                 val newRequest = it.request().newBuilder()
@@ -42,13 +42,13 @@ class NetworkModule{
 
                 it.proceed(newRequest)
             }
-//            .addNetworkInterceptor(httpLoggingInterceptor)
+            //            .addNetworkInterceptor(httpLoggingInterceptor)
             .build()
     }
 
     @Singleton
     @Provides
-    fun getRetrofitClient(okHttpClient: OkHttpClient): Retrofit{
+    fun getRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
             .client(okHttpClient)
@@ -59,7 +59,7 @@ class NetworkModule{
 
     @Singleton
     @Provides
-    fun getMovieService(retrofit: Retrofit): MovieService{
+    fun getMovieService(retrofit: Retrofit): MovieService {
         return retrofit.create(MovieService::class.java)
     }
 
