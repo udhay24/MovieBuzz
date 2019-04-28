@@ -5,7 +5,10 @@ import com.example.moviebuzz.repository.remote.TMDB_API_KEY
 import com.example.moviebuzz.repository.remote.TvRepository
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import com.example.moviebuzz.repository.tmdb_service.TvService
+import com.example.moviebuzz.ui.aboutfragment.AboutViewModel
 import com.example.moviebuzz.ui.moviefragment.MovieViewModel
+import com.example.moviebuzz.ui.searchfragment.SearchViewModel
+import com.example.moviebuzz.ui.tvfragment.TvShowsViewModel
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -66,7 +69,8 @@ val networkModule = module {
 }
 
 val viewModel = module {
-    viewModel {
-        MovieViewModel(get())
-    }
+    viewModel { MovieViewModel(get()) }
+    viewModel { TvShowsViewModel(get()) }
+    viewModel { SearchViewModel() }
+    viewModel { AboutViewModel() }
 }

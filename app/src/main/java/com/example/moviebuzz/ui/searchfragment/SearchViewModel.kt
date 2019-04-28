@@ -1,8 +1,5 @@
 package com.example.moviebuzz.ui.searchfragment
 
-import androidx.lifecycle.ViewModel;
-import javax.inject.Inject
+import androidx.lifecycle.ViewModel
 
-class SearchViewModel
-    @Inject constructor(): ViewModel() {
-}
+class SearchViewModel : ViewModel()

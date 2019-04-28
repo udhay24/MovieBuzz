@@ -1,8 +1,5 @@
 package com.example.moviebuzz.ui.aboutfragment
 
-import androidx.lifecycle.ViewModel;
-import javax.inject.Inject
+import androidx.lifecycle.ViewModel
 
-class AboutViewModel
-    @Inject constructor(): ViewModel() {
-}
+class AboutViewModel : ViewModel()
