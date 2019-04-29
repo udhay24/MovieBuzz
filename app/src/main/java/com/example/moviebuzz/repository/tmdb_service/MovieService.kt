@@ -1,7 +1,7 @@
 package com.example.moviebuzz.repository.tmdb_service
 
-import com.example.moviebuzz.repository.model.NowPlayingMovie
-import com.example.moviebuzz.repository.model.PopularMovie
+import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
+import com.example.moviebuzz.repository.model.movie.PopularMovie
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 

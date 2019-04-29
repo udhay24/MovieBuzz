@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
-import com.example.moviebuzz.repository.model.PopularTvShows
+import com.example.moviebuzz.repository.model.tvshows.PopularTvShows
 import com.squareup.picasso.Picasso
 
 class PopularTvShowsAdapter(private var popularTvShows: List<PopularTvShows.Result>?) :

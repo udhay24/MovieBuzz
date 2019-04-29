@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
 import com.example.moviebuzz.network.NetworkStatus
-import com.example.moviebuzz.repository.model.PopularTvShows
+import com.example.moviebuzz.repository.model.tvshows.PopularTvShows
 import kotlinx.android.synthetic.main.tv_shows_fragment.*
 import org.koin.android.ext.android.inject
 

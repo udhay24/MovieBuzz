@@ -3,8 +3,8 @@ package com.example.moviebuzz.repository.remote
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.moviebuzz.network.*
-import com.example.moviebuzz.repository.model.PopularTvShows
-import com.example.moviebuzz.repository.model.TvAiringToday
+import com.example.moviebuzz.repository.model.tvshows.PopularTvShows
+import com.example.moviebuzz.repository.model.tvshows.TvAiringToday
 import com.example.moviebuzz.repository.tmdb_service.TvService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

@@ -7,12 +7,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
-import com.example.moviebuzz.repository.model.NowPlayingMovie
-import com.example.moviebuzz.repository.model.PopularMovie
+import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
+import com.example.moviebuzz.repository.model.movie.PopularMovie
 import com.squareup.picasso.Picasso
 
 class PopularMoviesAdapter(private val context: Context?,
-                           private val popularMovie: PopularMovie)
+                           private val popularMovie: PopularMovie
+)
     : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
@@ -43,7 +44,8 @@ class PopularMoviesAdapter(private val context: Context?,
 }
 
 class NowPlayingMoviesAdapter(private val context: Context?,
-                              private val nowPlayingMovie: NowPlayingMovie)
+                              private val nowPlayingMovie: NowPlayingMovie
+)
     :RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMovieViewHolder>(){
 
 

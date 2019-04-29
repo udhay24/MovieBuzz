@@ -1,4 +1,4 @@
-package com.example.moviebuzz.repository.model
+package com.example.moviebuzz.repository.model.tvshows
 
 data class TvAiringToday(
     val page: Int,
