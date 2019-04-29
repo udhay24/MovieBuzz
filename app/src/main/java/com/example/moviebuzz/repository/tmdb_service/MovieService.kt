@@ -1,5 +1,6 @@
 package com.example.moviebuzz.repository.tmdb_service
 
+import com.example.moviebuzz.repository.model.movie.LatestMovie
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
 import com.example.moviebuzz.repository.model.movie.PopularMovie
 import kotlinx.coroutines.Deferred
@@ -11,4 +12,7 @@ interface MovieService {
 
     @GET("movie/now_playing")
     fun getNowPlayingMoviesAsync(): Deferred<NowPlayingMovie>
+
+    @GET("movie/latest")
+    fun getLatestMovieAsync(): Deferred<LatestMovie>
 }

@@ -11,10 +11,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
 import com.example.moviebuzz.network.NetworkStatus
+import com.example.moviebuzz.repository.model.movie.LatestMovie
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
 import com.example.moviebuzz.repository.model.movie.PopularMovie
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MovieFragment : Fragment() {
 
@@ -58,6 +61,20 @@ class MovieFragment : Fragment() {
                 }
         })
 
+        viewModel.latestMovie.observe(this, Observer {
+            when (it.status) {
+                NetworkStatus.SUCCESS -> {
+                    showLatestMovie(it.data!!)
+                }
+                NetworkStatus.LOADING -> {
+                    Toast.makeText(this@MovieFragment.context, "Loading", Toast.LENGTH_SHORT).show()
+                }
+                NetworkStatus.FAILURE -> {
+                    Toast.makeText(this@MovieFragment.context, "Error Try again", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
         return inflater.inflate(R.layout.movie_fragment, container, false)
     }
 
@@ -69,5 +86,14 @@ class MovieFragment : Fragment() {
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
         now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
+    }
+
+    private fun showLatestMovie(latestMovie: LatestMovie) {
+        latest_movie_title.text = latestMovie.title
+        val imageUrl = "https://image.tmdb.org/t/p/w300${latestMovie.poster_path}"
+        Timber.v(imageUrl)
+        Picasso.get()
+            .load(imageUrl)
+            .into(latest_movie_poster)
     }
 }
