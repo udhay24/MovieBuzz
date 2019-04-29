@@ -40,7 +40,7 @@ class PopularTvShowsAdapter(private var popularTvShows: List<PopularTvShows.Resu
 
         fun setPosterImage(posterPath: String) {
             Picasso.get()
-                .load("https://image.tmdb.org/t/p/w150$posterPath")
+                .load("https://image.tmdb.org/t/p/w200$posterPath")
                 .into(posterImageView)
         }
 

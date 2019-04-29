@@ -67,7 +67,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
-        now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
     }
 }
