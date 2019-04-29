@@ -14,6 +14,7 @@ import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.repository.model.movie.LatestMovie
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
 import com.example.moviebuzz.repository.model.movie.PopularMovie
+import com.example.moviebuzz.repository.model.movie.TopRatedMovies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
@@ -34,44 +35,66 @@ class MovieFragment : Fragment() {
         viewModel.popularMovies.observe(this,
             Observer {
                 when (it.status) {
-                    NetworkStatus.SUCCESS -> {
-                        setUpPopularMovieView(it.data!!)
-                    }
-                    NetworkStatus.LOADING -> {
-                        Toast.makeText(this@MovieFragment.context, "Loading", Toast.LENGTH_SHORT).show()
-                    }
-                    NetworkStatus.FAILURE -> {
-                        Toast.makeText(this@MovieFragment.context, "Error Try again", Toast.LENGTH_SHORT).show()
-                    }
+                    NetworkStatus.SUCCESS -> setUpPopularMovieView(it.data!!)
+                    NetworkStatus.LOADING -> Toast.makeText(
+                        this@MovieFragment.context,
+                        "Loading",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    NetworkStatus.FAILURE -> Toast.makeText(
+                        this@MovieFragment.context,
+                        "Error Try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             })
 
         viewModel.nowPlayingMovies.observe(this,
             Observer{
                 when (it.status) {
-                    NetworkStatus.SUCCESS -> {
-                        setUpNowPlayingMovies(it.data!!)
-                    }
-                    NetworkStatus.LOADING -> {
-                        Toast.makeText(this@MovieFragment.context, "Loading", Toast.LENGTH_SHORT).show()
-                    }
-                    NetworkStatus.FAILURE -> {
-                        Toast.makeText(this@MovieFragment.context, "Error Try again", Toast.LENGTH_SHORT).show()
-                    }
+                    NetworkStatus.SUCCESS -> setUpNowPlayingMovies(it.data!!)
+                    NetworkStatus.LOADING -> Toast.makeText(
+                        this@MovieFragment.context,
+                        "Loading",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    NetworkStatus.FAILURE -> Toast.makeText(
+                        this@MovieFragment.context,
+                        "Error Try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
         })
 
         viewModel.latestMovie.observe(this, Observer {
             when (it.status) {
-                NetworkStatus.SUCCESS -> {
-                    showLatestMovie(it.data!!)
-                }
-                NetworkStatus.LOADING -> {
-                    Toast.makeText(this@MovieFragment.context, "Loading", Toast.LENGTH_SHORT).show()
-                }
-                NetworkStatus.FAILURE -> {
-                    Toast.makeText(this@MovieFragment.context, "Error Try again", Toast.LENGTH_SHORT).show()
-                }
+                NetworkStatus.SUCCESS -> showLatestMovie(it.data!!)
+                NetworkStatus.LOADING -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Loading",
+                    Toast.LENGTH_SHORT
+                ).show()
+                NetworkStatus.FAILURE -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Error Try again",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
+        viewModel.topRatedMovies.observe(this, Observer {
+            when (it.status) {
+                NetworkStatus.SUCCESS -> showTopRatedMovies(it.data!!)
+                NetworkStatus.LOADING -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Loading",
+                    Toast.LENGTH_SHORT
+                ).show()
+                NetworkStatus.FAILURE -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Error Try again",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
 
@@ -95,5 +118,10 @@ class MovieFragment : Fragment() {
         Picasso.get()
             .load(imageUrl)
             .into(latest_movie_poster)
+    }
+
+    private fun showTopRatedMovies(results: List<TopRatedMovies.Result>) {
+        top_rated_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results)
     }
 }

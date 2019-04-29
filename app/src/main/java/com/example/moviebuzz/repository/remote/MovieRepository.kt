@@ -6,6 +6,7 @@ import com.example.moviebuzz.network.*
 import com.example.moviebuzz.repository.model.movie.LatestMovie
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
 import com.example.moviebuzz.repository.model.movie.PopularMovie
+import com.example.moviebuzz.repository.model.movie.TopRatedMovies
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +67,7 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val latestMovieLiveData = MutableLiveData<ApiResponse<LatestMovie>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val latestMovie = movieService.getLatestMovieAsync().await()
+                        val latestMovie = movieService.getLatestMoviesAsync().await()
                         latestMovieLiveData.postValue(
                             ApiSuccessResponse(latestMovie, "")
                         )
@@ -78,6 +79,32 @@ class MovieRepository constructor(private val movieService: MovieService)
             }
 
             override fun convertToResultType(requestType: LatestMovie): LatestMovie = requestType
+
+        }.asLiveData()
+    }
+
+    fun fetchTopRatedMovies(): LiveData<Resource<List<TopRatedMovies.Result>>> {
+        return object : NetworkBoundResource<List<TopRatedMovies.Result>, TopRatedMovies>() {
+
+            override fun networkCall(): LiveData<ApiResponse<TopRatedMovies>> {
+                val topRatedMovieLiveData = MutableLiveData<ApiResponse<TopRatedMovies>>(ApiEmptyResponse())
+                launch {
+                    try {
+                        val topRatedMovies = movieService.getTopRatedMoviesAsync().await()
+                        topRatedMovieLiveData.postValue(
+                            ApiSuccessResponse(topRatedMovies, "")
+                        )
+                    } catch (exception: Exception) {
+                        topRatedMovieLiveData.postValue(
+                            ApiErrorResponse(exception.localizedMessage)
+                        )
+                    }
+                }
+                return topRatedMovieLiveData
+            }
+
+            override fun convertToResultType(requestType: TopRatedMovies): List<TopRatedMovies.Result> =
+                requestType.results
 
         }.asLiveData()
     }
