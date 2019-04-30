@@ -63,13 +63,13 @@ class MovieRepository constructor(private val movieService: MovieService)
             override fun networkCall(): LiveData<ApiResponse<LatestMovies>> {
                 val latestMovieLiveData = MutableLiveData<ApiResponse<LatestMovies>>(ApiEmptyResponse())
                 launch {
-                    try {
-                        val latestMovie = movieService.getLatestMoviesAsync().await()
+                    val response = movieService.getLatestMoviesAsync().await()
+                    if (response.isSuccessful) {
                         latestMovieLiveData.postValue(
-                            ApiSuccessResponse(latestMovie, "")
+                            ApiSuccessResponse(response.body()!!, "")
                         )
-                    } catch (exception: Exception) {
-                        latestMovieLiveData.postValue(ApiErrorResponse(exception.localizedMessage))
+                    } else {
+                        latestMovieLiveData.postValue(ApiErrorResponse(response.errorBody().toString()))
                     }
                 }
                 return latestMovieLiveData

@@ -2,6 +2,7 @@ package com.example.moviebuzz.repository.tmdb_service
 
 import com.example.moviebuzz.repository.model.movie.*
 import kotlinx.coroutines.Deferred
+import retrofit2.Response
 import retrofit2.http.GET
 
 interface MovieService {
@@ -12,7 +13,7 @@ interface MovieService {
     fun getNowPlayingMoviesAsync(): Deferred<NowPlayingMovies>
 
     @GET("movie/latest")
-    fun getLatestMoviesAsync(): Deferred<LatestMovies>
+    fun getLatestMoviesAsync(): Deferred<Response<LatestMovies>>
 
     @GET("movie/top_rated")
     fun getTopRatedMoviesAsync(): Deferred<TopRatedMovies>
