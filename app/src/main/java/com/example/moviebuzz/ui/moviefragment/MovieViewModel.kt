@@ -12,4 +12,5 @@ class MovieViewModel(movieRepository: MovieRepository)
     val nowPlayingMovies = movieRepository.fetchNowPlayingMovies()
     val latestMovie = movieRepository.fetchLatestMovie()
     val topRatedMovies = movieRepository.fetchTopRatedMovies()
+    val upcomingMovies = movieRepository.fetchUpComingMovies()
 }

@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
 import com.example.moviebuzz.network.NetworkStatus
-import com.example.moviebuzz.repository.model.movie.LatestMovie
-import com.example.moviebuzz.repository.model.movie.NowPlayingMovie
-import com.example.moviebuzz.repository.model.movie.PopularMovie
-import com.example.moviebuzz.repository.model.movie.TopRatedMovies
+import com.example.moviebuzz.repository.model.movie.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
@@ -32,8 +29,7 @@ class MovieFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        viewModel.popularMovies.observe(this,
-            Observer {
+        viewModel.popularMovies.observe(this, Observer {
                 when (it.status) {
                     NetworkStatus.SUCCESS -> setUpPopularMovieView(it.data!!)
                     NetworkStatus.LOADING -> Toast.makeText(
@@ -49,8 +45,7 @@ class MovieFragment : Fragment() {
                 }
             })
 
-        viewModel.nowPlayingMovies.observe(this,
-            Observer{
+        viewModel.nowPlayingMovies.observe(this, Observer {
                 when (it.status) {
                     NetworkStatus.SUCCESS -> setUpNowPlayingMovies(it.data!!)
                     NetworkStatus.LOADING -> Toast.makeText(
@@ -98,22 +93,38 @@ class MovieFragment : Fragment() {
             }
         })
 
+        viewModel.upcomingMovies.observe(this, Observer {
+            when (it.status) {
+                NetworkStatus.SUCCESS -> showUpComingMovies(it.data!!)
+                NetworkStatus.LOADING -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Loading",
+                    Toast.LENGTH_SHORT
+                ).show()
+                NetworkStatus.FAILURE -> Toast.makeText(
+                    this@MovieFragment.context,
+                    "Error Try again",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+
         return inflater.inflate(R.layout.movie_fragment, container, false)
     }
 
-    private fun setUpPopularMovieView(popularMovie: PopularMovie){
+    private fun setUpPopularMovieView(popularMovies: PopularMovies) {
         popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovie)
+        popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovies)
     }
 
-    private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovie){
+    private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovies) {
         now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
     }
 
-    private fun showLatestMovie(latestMovie: LatestMovie) {
-        latest_movie_title.text = latestMovie.title
-        val imageUrl = "https://image.tmdb.org/t/p/w300${latestMovie.poster_path}"
+    private fun showLatestMovie(latestMovies: LatestMovies) {
+        latest_movie_title.text = latestMovies.title
+        val imageUrl = "https://image.tmdb.org/t/p/w300${latestMovies.poster_path}"
         Timber.v(imageUrl)
         Picasso.get()
             .load(imageUrl)
@@ -124,4 +135,10 @@ class MovieFragment : Fragment() {
         top_rated_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results)
     }
+
+    private fun showUpComingMovies(results: List<UpComingMovies.Result>) {
+        up_coming_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        up_coming_movie_recycler_view.adapter = UpComingMoviesAdapter(results)
+    }
+
 }

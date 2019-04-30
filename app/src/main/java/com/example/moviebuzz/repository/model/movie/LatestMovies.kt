@@ -1,6 +1,6 @@
 package com.example.moviebuzz.repository.model.movie
 
-data class LatestMovie(
+data class LatestMovies(
     val adult: Boolean,
     val backdrop_path: Any,
     val belongs_to_collection: Any,

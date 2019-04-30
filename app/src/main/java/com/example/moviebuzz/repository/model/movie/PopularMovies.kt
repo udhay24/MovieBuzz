@@ -1,17 +1,11 @@
 package com.example.moviebuzz.repository.model.movie
 
-data class NowPlayingMovie(
-    val dates: Dates,
+data class PopularMovies(
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,
     val total_results: Int
-) {
-    data class Dates(
-        val maximum: String,
-        val minimum: String
-    )
-
+){
     data class Result(
         val adult: Boolean,
         val backdrop_path: String,
