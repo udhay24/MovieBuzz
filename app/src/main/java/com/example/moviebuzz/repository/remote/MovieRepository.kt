@@ -8,6 +8,7 @@ import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MovieRepository constructor(private val movieService: MovieService)
     :Repository, CoroutineScope by CoroutineScope(Dispatchers.Default){
@@ -64,6 +65,7 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val latestMovieLiveData = MutableLiveData<ApiResponse<LatestMovies>>(ApiEmptyResponse())
                 launch {
                     val response = movieService.getLatestMoviesAsync().await()
+                    Timber.v(response.raw().request().url().toString())
                     if (response.isSuccessful) {
                         latestMovieLiveData.postValue(
                             ApiSuccessResponse(response.body()!!, "")

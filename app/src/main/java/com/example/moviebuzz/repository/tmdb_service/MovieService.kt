@@ -4,6 +4,7 @@ import com.example.moviebuzz.repository.model.movie.*
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface MovieService {
     @GET("movie/popular")
@@ -20,4 +21,7 @@ interface MovieService {
 
     @GET("movie/upcoming")
     fun getUpComingMoviesAsync(): Deferred<UpComingMovies>
+
+    @GET("movie/{movie_id}")
+    fun getMovieDetailFromId(@Path("movie_id") id: Double): Deferred<Response<Movie>>
 }

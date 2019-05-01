@@ -15,7 +15,6 @@ import com.example.moviebuzz.repository.model.movie.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
-import timber.log.Timber
 
 class MovieFragment : Fragment() {
 
@@ -114,18 +113,20 @@ class MovieFragment : Fragment() {
 
     private fun setUpPopularMovieView(popularMovies: PopularMovies) {
         popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        popular_movies_recycler_view.adapter = PopularMoviesAdapter(context, popularMovies)
+        popular_movies_recycler_view.adapter = PopularMoviesAdapter(popularMovies) { openMovieDetailView(it) }
     }
 
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovies) {
         now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(context, nowPlayingMovies)
+        now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(nowPlayingMovies) { openMovieDetailView(it) }
     }
 
     private fun showLatestMovie(latestMovies: LatestMovies) {
         latest_movie_title.text = latestMovies.title
-        val imageUrl = "https://image.tmdb.org/t/p/w300${latestMovies.poster_path}"
-        Timber.v(imageUrl)
+        var imageUrl = "https://image.tmdb.org/t/p/w300${latestMovies.poster_path}"
+        if (latestMovies.adult) {
+            imageUrl = " "
+        }
         Picasso.get()
             .load(imageUrl)
             .into(latest_movie_poster)
@@ -133,12 +134,15 @@ class MovieFragment : Fragment() {
 
     private fun showTopRatedMovies(results: List<TopRatedMovies.Result>) {
         top_rated_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results)
+        top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results) { openMovieDetailView(it) }
     }
 
     private fun showUpComingMovies(results: List<UpComingMovies.Result>) {
         up_coming_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-        up_coming_movie_recycler_view.adapter = UpComingMoviesAdapter(results)
+        up_coming_movie_recycler_view.adapter = UpComingMoviesAdapter(results) { openMovieDetailView(it) }
     }
 
+    private fun openMovieDetailView(movieId: Int) {
+        Toast.makeText(context, "Movie Id: $movieId", Toast.LENGTH_SHORT).show()
+    }
 }

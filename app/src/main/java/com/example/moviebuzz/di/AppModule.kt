@@ -6,6 +6,7 @@ import com.example.moviebuzz.repository.remote.TvRepository
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import com.example.moviebuzz.repository.tmdb_service.TvService
 import com.example.moviebuzz.ui.aboutfragment.AboutViewModel
+import com.example.moviebuzz.ui.moviedetail.MovieDetailViewModel
 import com.example.moviebuzz.ui.moviefragment.MovieViewModel
 import com.example.moviebuzz.ui.searchfragment.SearchViewModel
 import com.example.moviebuzz.ui.tvfragment.TvShowsViewModel
@@ -73,4 +74,5 @@ val viewModel = module {
     viewModel { TvShowsViewModel(get()) }
     viewModel { SearchViewModel() }
     viewModel { AboutViewModel() }
+    viewModel { MovieDetailViewModel() }
 }

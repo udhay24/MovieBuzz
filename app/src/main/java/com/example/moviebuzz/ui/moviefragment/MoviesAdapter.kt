@@ -1,6 +1,5 @@
 package com.example.moviebuzz.ui.moviefragment
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +13,21 @@ import com.example.moviebuzz.repository.model.movie.TopRatedMovies
 import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.squareup.picasso.Picasso
 
-class PopularMoviesAdapter(private val context: Context?,
-                           private val popularMovies: PopularMovies
+class PopularMoviesAdapter(
+    private val popularMovies: PopularMovies,
+    private val movieClickListener: (Int) -> Unit
 )
     : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
 
-        val view = LayoutInflater.from(context).inflate(R.layout.single_image_layout, parent, false)
+        val view = LayoutInflater
+            .from(parent.context)
+            .inflate(R.layout.single_image_layout, parent, false)
 
-        return PopularMoviesViewHolder(view)
+        val holder = PopularMoviesViewHolder(view, movieClickListener)
+        view.setOnClickListener(holder)
+        return holder
     }
 
     override fun getItemCount(): Int = popularMovies.results.count()
@@ -32,7 +36,10 @@ class PopularMoviesAdapter(private val context: Context?,
         holder.setPosterImage(popularMovies.results[position].poster_path)
     }
 
-    class PopularMoviesViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+    inner class PopularMoviesViewHolder(
+        private val view: View,
+        private val movieClickListener: (Int) -> Unit
+    ) : RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private val moviePoster: ImageView = view.findViewById(R.id.movie_poster)
 
@@ -43,21 +50,27 @@ class PopularMoviesAdapter(private val context: Context?,
                 .load(posterUrl)
                 .into(moviePoster)
         }
+
+        override fun onClick(v: View?) {
+            movieClickListener.invoke(popularMovies.results[adapterPosition].id)
+        }
     }
 }
 
-class NowPlayingMoviesAdapter(private val context: Context?,
-                              private val nowPlayingMovies: NowPlayingMovies
+class NowPlayingMoviesAdapter(
+    private val nowPlayingMovies: NowPlayingMovies,
+    private val movieClickListener: (Int) -> Unit
 )
     :RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMovieViewHolder>(){
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NowPlayingMovieViewHolder {
 
-        val view = LayoutInflater.from(context)
+        val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_image_layout, parent, false)
 
-        return NowPlayingMovieViewHolder(view)
+        val holder = NowPlayingMovieViewHolder(view, movieClickListener)
+        view.setOnClickListener(holder)
+        return holder
     }
 
     override fun getItemCount(): Int = nowPlayingMovies.results.count()
@@ -66,9 +79,10 @@ class NowPlayingMoviesAdapter(private val context: Context?,
         holder.setPosterImage(nowPlayingMovies.results[position].poster_path)
     }
 
-    class NowPlayingMovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class NowPlayingMovieViewHolder(private val view: View, private val movieClickListener: (Int) -> Unit) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
 
-        val moviePoster: ImageView = view.findViewById(R.id.movie_poster)
+        private val moviePoster: ImageView = view.findViewById(R.id.movie_poster)
 
         fun setPosterImage(relativeUrl: String) {
             val posterUrl = BaseUrl.getPosterPath(relativeUrl)
@@ -77,20 +91,27 @@ class NowPlayingMoviesAdapter(private val context: Context?,
                 .load(posterUrl)
                 .into(moviePoster)
         }
+
+        override fun onClick(v: View?) {
+            movieClickListener.invoke(nowPlayingMovies.results[adapterPosition].id)
+        }
     }
 }
 
-class TopRatedMoviesAdapter(private val results: List<TopRatedMovies.Result>) :
-    RecyclerView.Adapter<TopRatedMoviesAdapter.TopRatedMoviesViewHolder>() {
+class TopRatedMoviesAdapter(
+    private val results: List<TopRatedMovies.Result>,
+    private val movieClickListener: (Int) -> Unit
+) : RecyclerView.Adapter<TopRatedMoviesAdapter.TopRatedMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopRatedMoviesViewHolder {
 
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_image_layout, parent, false)
 
-        return TopRatedMoviesViewHolder(view)
+        val holder = TopRatedMoviesViewHolder(view, movieClickListener)
+        view.setOnClickListener(holder)
+        return holder
     }
-
 
     override fun getItemCount(): Int = results.size
 
@@ -98,7 +119,8 @@ class TopRatedMoviesAdapter(private val results: List<TopRatedMovies.Result>) :
         holder.setImage(results[position].poster_path)
     }
 
-    class TopRatedMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class TopRatedMoviesViewHolder(view: View, private val movieClickListener: (Int) -> Unit) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private val posterImageView: ImageView = view.findViewById(R.id.movie_poster)
 
@@ -108,10 +130,17 @@ class TopRatedMoviesAdapter(private val results: List<TopRatedMovies.Result>) :
                 .load(posterUrl)
                 .into(posterImageView)
         }
+
+        override fun onClick(v: View?) {
+            movieClickListener.invoke(results[adapterPosition].id)
+        }
     }
 }
 
-class UpComingMoviesAdapter(private val results: List<UpComingMovies.Result>) :
+class UpComingMoviesAdapter(
+    private val results: List<UpComingMovies.Result>,
+    private val movieClickListener: (Int) -> Unit
+) :
     RecyclerView.Adapter<UpComingMoviesAdapter.UpComingMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpComingMoviesViewHolder {
@@ -119,7 +148,9 @@ class UpComingMoviesAdapter(private val results: List<UpComingMovies.Result>) :
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.single_image_layout, parent, false)
 
-        return UpComingMoviesViewHolder(view)
+        val holder = UpComingMoviesViewHolder(view, movieClickListener)
+        view.setOnClickListener(holder)
+        return holder
     }
 
 
@@ -129,7 +160,8 @@ class UpComingMoviesAdapter(private val results: List<UpComingMovies.Result>) :
         holder.setImage(results[position].poster_path)
     }
 
-    class UpComingMoviesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class UpComingMoviesViewHolder(view: View, private val clickListener: (Int) -> Unit) :
+        RecyclerView.ViewHolder(view), View.OnClickListener {
 
         private val posterImageView: ImageView = view.findViewById(R.id.movie_poster)
 
@@ -139,5 +171,10 @@ class UpComingMoviesAdapter(private val results: List<UpComingMovies.Result>) :
                 .load(posterUrl)
                 .into(posterImageView)
         }
+
+        override fun onClick(v: View?) {
+            clickListener.invoke(results[adapterPosition].id)
+        }
     }
 }
+
