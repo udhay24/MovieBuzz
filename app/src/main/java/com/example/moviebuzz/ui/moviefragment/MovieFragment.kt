@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
@@ -123,10 +124,7 @@ class MovieFragment : Fragment() {
 
     private fun showLatestMovie(latestMovies: LatestMovies) {
         latest_movie_title.text = latestMovies.title
-        var imageUrl = "https://image.tmdb.org/t/p/w300${latestMovies.poster_path}"
-        if (latestMovies.adult) {
-            imageUrl = " "
-        }
+        val imageUrl = "https://image.tmdb.org/t/p/w300${latestMovies.poster_path}"
         Picasso.get()
             .load(imageUrl)
             .into(latest_movie_poster)
@@ -143,6 +141,6 @@ class MovieFragment : Fragment() {
     }
 
     private fun openMovieDetailView(movieId: Int) {
-        Toast.makeText(context, "Movie Id: $movieId", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(R.id.action_movieFragment_to_movieDetail)
     }
 }

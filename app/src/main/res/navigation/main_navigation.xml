@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/main_navigation" app:startDestination="@id/movieFragment">
 
     <fragment android:id="@+id/movieFragment" android:name="com.example.moviebuzz.ui.moviefragment.MovieFragment"
-              android:label="MovieFragment"/>
+              android:label="MovieFragment"
+            >
+        <action
+                android:id="@+id/action_movieFragment_to_movieDetail"
+                app:destination="@id/movieDetail"
+                app:popExitAnim="@anim/slide_center_to_bottom"
+                app:launchSingleTop="false"
+                app:popUpToInclusive="false"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:enterAnim="@anim/slide_centre_to_top"
+                app:exitAnim="@anim/nav_default_exit_anim"
+                />
+    </fragment>
     <fragment android:id="@+id/tvShowsFragment" android:name="com.example.moviebuzz.ui.tvfragment.TvShowsFragment"
               android:label="TvShowsFragment"/>
     <fragment android:id="@+id/aboutFragment" android:name="com.example.moviebuzz.ui.aboutfragment.AboutFragment"
               android:label="AboutFragment"/>
     <fragment android:id="@+id/searchFragment" android:name="com.example.moviebuzz.ui.searchfragment.SearchFragment"
               android:label="SearchFragment"/>
+    <fragment
+            android:id="@+id/movieDetail"
+            android:name="com.example.moviebuzz.ui.moviedetail.MovieDetail"
+            android:label="movie_detail_fragment"
+            tools:layout="@layout/movie_detail_fragment"
+            />
 </navigation>
