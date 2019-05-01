@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
+import com.example.moviebuzz.network.BaseUrl
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
 import com.example.moviebuzz.repository.model.movie.PopularMovies
 import com.example.moviebuzz.repository.model.movie.TopRatedMovies
@@ -25,23 +26,23 @@ class PopularMoviesAdapter(private val context: Context?,
         return PopularMoviesViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-
-        return popularMovies.results.count()
-    }
+    override fun getItemCount(): Int = popularMovies.results.count()
 
     override fun onBindViewHolder(holder: PopularMoviesViewHolder, position: Int) {
-
-        val url = "https://image.tmdb.org/t/p/w300${popularMovies.results[position].poster_path}"
-
-        Picasso.get()
-            .load(url)
-            .into(holder.imageView)
+        holder.setPosterImage(popularMovies.results[position].poster_path)
     }
 
     class PopularMoviesViewHolder(private val view: View): RecyclerView.ViewHolder(view){
 
-        val imageView: ImageView = view.findViewById(R.id.movie_poster)
+        private val moviePoster: ImageView = view.findViewById(R.id.movie_poster)
+
+        fun setPosterImage(relativeUrl: String) {
+            val posterUrl = BaseUrl.getPosterPath(relativeUrl)
+
+            Picasso.get()
+                .load(posterUrl)
+                .into(moviePoster)
+        }
     }
 }
 
@@ -59,25 +60,23 @@ class NowPlayingMoviesAdapter(private val context: Context?,
         return NowPlayingMovieViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-
-        return nowPlayingMovies.results.count()
-    }
+    override fun getItemCount(): Int = nowPlayingMovies.results.count()
 
     override fun onBindViewHolder(holder: NowPlayingMovieViewHolder, position: Int) {
-
-        val posterUrl = "https://image.tmdb.org/t/p/w300${nowPlayingMovies.results[position].poster_path}"
-
-        //set poster image
-        Picasso.get()
-            .load(posterUrl)
-            .into(holder.moviePoster)
-
+        holder.setPosterImage(nowPlayingMovies.results[position].poster_path)
     }
 
-    class NowPlayingMovieViewHolder(private val view: View): RecyclerView.ViewHolder(view){
+    class NowPlayingMovieViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         val moviePoster: ImageView = view.findViewById(R.id.movie_poster)
+
+        fun setPosterImage(relativeUrl: String) {
+            val posterUrl = BaseUrl.getPosterPath(relativeUrl)
+
+            Picasso.get()
+                .load(posterUrl)
+                .into(moviePoster)
+        }
     }
 }
 
@@ -104,7 +103,7 @@ class TopRatedMoviesAdapter(private val results: List<TopRatedMovies.Result>) :
         private val posterImageView: ImageView = view.findViewById(R.id.movie_poster)
 
         fun setImage(relativeUrl: String) {
-            val posterUrl = "https://image.tmdb.org/t/p/w300$relativeUrl"
+            val posterUrl = BaseUrl.getPosterPath(relativeUrl)
             Picasso.get()
                 .load(posterUrl)
                 .into(posterImageView)
@@ -135,7 +134,7 @@ class UpComingMoviesAdapter(private val results: List<UpComingMovies.Result>) :
         private val posterImageView: ImageView = view.findViewById(R.id.movie_poster)
 
         fun setImage(relativeUrl: String) {
-            val posterUrl = "https://image.tmdb.org/t/p/w200$relativeUrl"
+            val posterUrl = BaseUrl.getPosterPath(relativeUrl)
             Picasso.get()
                 .load(posterUrl)
                 .into(posterImageView)
