@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment
 import com.example.moviebuzz.R
 import org.koin.android.ext.android.inject
 
-class MovieDetail : Fragment() {
+class MovieDetailFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MovieDetail()
+        fun newInstance() = MovieDetailFragment()
     }
 
     private val viewModel: MovieDetailViewModel by inject()

@@ -116,7 +116,11 @@ class TopRatedMoviesAdapter(
     override fun getItemCount(): Int = results.size
 
     override fun onBindViewHolder(holder: TopRatedMoviesViewHolder, position: Int) {
-        holder.setImage(results[position].poster_path)
+        results[position].poster_path.apply {
+            if (this != null) {
+                holder.setImage(this)
+            }
+        }
     }
 
     inner class TopRatedMoviesViewHolder(view: View, private val movieClickListener: (Int) -> Unit) :
