@@ -23,5 +23,5 @@ interface MovieService {
     fun getUpComingMoviesAsync(): Deferred<UpComingMovies>
 
     @GET("movie/{movie_id}")
-    fun getMovieDetailFromId(@Path("movie_id") id: Double): Deferred<Response<Movie>>
+    fun getMovieDetailFromIdAsync(@Path("movie_id") id: Int): Deferred<Response<Movie>>
 }

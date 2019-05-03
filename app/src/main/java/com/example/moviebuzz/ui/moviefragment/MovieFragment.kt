@@ -141,6 +141,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun openMovieDetailView(movieId: Int) {
-        findNavController().navigate(R.id.action_movieFragment_to_movieDetail)
+        val navDirections = MovieFragmentDirections.actionMovieFragmentToMovieDetail(movieId)
+        findNavController().navigate(navDirections)
     }
 }

@@ -129,4 +129,27 @@ class MovieRepository constructor(private val movieService: MovieService)
                 requestType.results
         }.asLiveData()
     }
+
+    fun fetchMovieById(movieId: Int): LiveData<Resource<Movie>> {
+        return object : NetworkBoundResource<Movie, Movie>() {
+            override fun networkCall(): LiveData<ApiResponse<Movie>> {
+                val result = MutableLiveData<ApiResponse<Movie>>(ApiEmptyResponse())
+                launch {
+                    val networkResponse = movieService.getMovieDetailFromIdAsync(movieId).await()
+                    if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                        result.postValue(
+                            ApiSuccessResponse(networkResponse.body()!!, "")
+                        )
+                    } else {
+                        result.postValue(
+                            ApiErrorResponse(networkResponse.errorBody().toString())
+                        )
+                    }
+                }
+                return result
+            }
+
+            override fun convertToResultType(requestType: Movie): Movie = requestType
+        }.asLiveData()
+    }
 }

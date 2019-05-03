@@ -74,5 +74,5 @@ val viewModel = module {
     viewModel { TvShowsViewModel(get()) }
     viewModel { SearchViewModel() }
     viewModel { AboutViewModel() }
-    viewModel { MovieDetailViewModel() }
+    viewModel { (movieId: Int) -> MovieDetailViewModel(get(), movieId) }
 }

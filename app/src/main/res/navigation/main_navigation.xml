@@ -14,7 +14,12 @@
                 app:launchSingleTop="false"
                 app:popUpToInclusive="false"
                 app:enterAnim="@anim/slide_bottom_to_centre"
-                />
+                >
+            <argument
+                    android:defaultValue="-1"
+                    android:name="movie_id"
+                    />
+        </action>
     </fragment>
     <fragment android:id="@+id/tvShowsFragment" android:name="com.example.moviebuzz.ui.tvfragment.TvShowsFragment"
               android:label="TvShowsFragment"/>
@@ -27,5 +32,11 @@
             android:name="com.example.moviebuzz.ui.moviedetail.MovieDetailFragment"
             android:label="movie_detail_fragment"
             tools:layout="@layout/movie_detail_fragment"
-            />
+            >
+        <argument
+                android:name="movie_id"
+                app:argType="integer"
+                android:defaultValue="-1"
+                />
+    </fragment>
 </navigation>

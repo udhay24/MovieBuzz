@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.example.moviebuzz.R
 import com.example.moviebuzz.ui.mainactivity.MainActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 class MovieDetailFragment : Fragment() {
 
@@ -18,12 +22,16 @@ class MovieDetailFragment : Fragment() {
         fun newInstance() = MovieDetailFragment()
     }
 
-    private val viewModel: MovieDetailViewModel by inject()
+    private val args: MovieDetailFragmentArgs by navArgs()
+    private val viewModel: MovieDetailViewModel by inject { parametersOf(args.movieId) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel.movie.observe(this, Observer {
+            Toast.makeText(this@MovieDetailFragment.context, it.data?.originalTitle, Toast.LENGTH_SHORT).show()
+        })
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 

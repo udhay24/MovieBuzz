@@ -11,7 +11,7 @@ data class Movie(
     val belongsToCollection: Any,
     val budget: Int,
     val genres: List<Genre>,
-    val homepage: Any,
+    val homepage: String,
     val id: Int,
     @SerializedName("imdb_id")
     val imdbId: String,
@@ -22,7 +22,7 @@ data class Movie(
     val overview: String,
     val popularity: Double,
     @SerializedName("poster_path")
-    val posterPath: Any,
+    val posterPath: String,
     @SerializedName("production_companies")
     val productionCompanies: List<ProductionCompany>,
     @SerializedName("production_countries")
