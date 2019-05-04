@@ -6,13 +6,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.moviebuzz.R
+import com.example.moviebuzz.network.BaseUrl
+import com.example.moviebuzz.network.NetworkStatus
+import com.example.moviebuzz.repository.model.movie.Movie
 import com.example.moviebuzz.ui.mainactivity.MainActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -30,7 +34,11 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewModel.movie.observe(this, Observer {
-            Toast.makeText(this@MovieDetailFragment.context, it.data?.originalTitle, Toast.LENGTH_SHORT).show()
+            when (it.status) {
+                NetworkStatus.SUCCESS -> {
+                    setUpMovieLayout(it.data!!)
+                }
+            }
         })
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
@@ -67,5 +75,17 @@ class MovieDetailFragment : Fragment() {
                 })
                 .duration = 200
         }
+    }
+
+    private fun setUpMovieLayout(movie: Movie) {
+        Picasso.get()
+            .load(BaseUrl.getBackdropPath(movie.backdropPath))
+            .into(background_image)
+
+        Picasso.get()
+            .load(BaseUrl.getPosterPath(movie.posterPath))
+            .into(movie_poster_image)
+
+        movie_title.text = movie.title
     }
 }
