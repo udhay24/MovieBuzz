@@ -40,6 +40,7 @@ class MovieDetailFragment : Fragment() {
                 }
             }
         })
+
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 

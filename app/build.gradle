@@ -38,7 +38,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha04'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0-alpha04'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha05'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha04'
 
     //Networking Library
@@ -59,7 +59,9 @@ dependencies {
 
     //ktx for android
     implementation 'androidx.core:core-ktx:1.0.1'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    //recycler view
+    implementation "androidx.recyclerview:recyclerview:1.1.0-alpha04"
 
     //Picasso for image
     implementation 'com.squareup.picasso:picasso:2.71828'
@@ -78,4 +80,7 @@ dependencies {
     implementation 'org.koin:koin-androidx-scope:2.0.0-rc-1'
     // or Koin for Android Architecture ViewModel
     implementation 'org.koin:koin-androidx-viewmodel:2.0.0-rc-1'
+
+    //material design
+    implementation 'com.google.android.material:material:1.1.0-alpha06'
 }
