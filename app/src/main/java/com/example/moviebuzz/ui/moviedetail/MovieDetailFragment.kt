@@ -3,6 +3,8 @@ package com.example.moviebuzz.ui.moviedetail
 import android.animation.Animator
 import android.content.Context
 import android.os.Bundle
+import android.text.TextUtils
+import android.transition.TransitionManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +46,14 @@ class MovieDetailFragment : Fragment() {
         return inflater.inflate(R.layout.movie_detail_fragment, container, false)
     }
 
+    override fun onStart() {
+        super.onStart()
+        description.setOnClickListener {
+            TransitionManager.beginDelayedTransition(view as ViewGroup)
+            description.maxLines = Integer.MAX_VALUE
+            description.ellipsize = TextUtils.TruncateAt.MARQUEE
+        }
+    }
     override fun onAttach(context: Context) {
         super.onAttach(context)
         (activity as MainActivity).bottom_navigation.apply {
