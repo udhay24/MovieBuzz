@@ -94,6 +94,8 @@ This flag is probably the most common and suitable for a Details view, with Imag
 exitUntilCollapsed — the name of this flag says for itself. On scroll down, CollapsingToolbarLayout hides only till collapsed state, which is based on the min height. So, in our case it’s Toolbar’s height. This way, it will always be visible and when scrolled all the way up — will expand the flexible area beneath it (in our case — ImageView).
 
 This flag is probably the most common and suitable for a Details view, with ImageView and CardViews below. Again, you need to add app:layout_collapseMode=pin on the Toolbar, so the action items are shown on scroll."
+                android:maxLines="3"
+                android:ellipsize="end"
                 />
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
