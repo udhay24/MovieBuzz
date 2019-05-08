@@ -1,6 +1,7 @@
 package com.example.moviebuzz
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.moviebuzz.di.networkModule
 import com.example.moviebuzz.di.viewModel
 import org.koin.android.ext.koin.androidContext
@@ -16,5 +17,6 @@ class MovieBuzzApplication : Application() {
             modules(listOf(networkModule, viewModel))
         }
         Timber.plant(Timber.DebugTree())
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
     }
 }
