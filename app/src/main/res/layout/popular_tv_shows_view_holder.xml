@@ -4,7 +4,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:id="@+id/linearLayout">
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout"
+        android:theme="@style/AppTheme"
+        >
 
     <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -15,24 +18,36 @@
             app:cardCornerRadius="4dp"
             android:layout_margin="10dp"
     >
-        <androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
-                                                           android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
             <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" tools:srcCompat="@tools:sample/avatars"
-                    android:id="@+id/tv_show_poster" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_height="wrap_content"
+                    tools:srcCompat="@tools:sample/avatars"
+                    android:id="@+id/tv_show_poster"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent" android:scaleType="center"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:scaleType="center"
+                    />
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_show_name" android:layout_marginEnd="97dp"
+                    android:id="@+id/tv_show_name"
+                    android:layout_marginEnd="97dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginStart="108dp" app:layout_constraintStart_toEndOf="@+id/tv_show_poster"
-                    android:layout_marginTop="40dp" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginStart="108dp"
+                    app:layout_constraintStart_toEndOf="@+id/tv_show_poster"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginBottom="41dp"
-                    app:layout_constraintBottom_toBottomOf="parent" tools:text="TV Show"/>
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:text="TV Show"
+                    />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

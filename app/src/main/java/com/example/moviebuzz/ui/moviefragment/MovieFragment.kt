@@ -118,7 +118,6 @@ class MovieFragment : Fragment() {
     }
 
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovies) {
-        now_playing_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(nowPlayingMovies) { openMovieDetailView(it) }
     }
 
@@ -131,12 +130,10 @@ class MovieFragment : Fragment() {
     }
 
     private fun showTopRatedMovies(results: List<TopRatedMovies.Result>) {
-        top_rated_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results) { openMovieDetailView(it) }
     }
 
     private fun showUpComingMovies(results: List<UpComingMovies.Result>) {
-        up_coming_movie_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         up_coming_movie_recycler_view.adapter = UpComingMoviesAdapter(results) { openMovieDetailView(it) }
     }
 

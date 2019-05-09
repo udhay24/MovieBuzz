@@ -10,7 +10,7 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/backgrounds/scenic"
+            tools:src="@tools:sample/avatars"
             android:id="@+id/movie_poster"
             android:scaleType="center"
             app:layout_constraintStart_toStartOf="parent"
