@@ -36,6 +36,17 @@ class MovieDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+//        val binding: MovieDetailFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.movie_detail_fragment, container, false)
+//        binding.lifecycleOwner = this
+//        binding.viewModel = viewModel
+//        return binding.root
+
+        return LayoutInflater.from(context).inflate(R.layout.movie_detail_fragment, container, false)
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.movie.observe(this, Observer {
             when (it.status) {
                 NetworkStatus.SUCCESS -> {
@@ -43,12 +54,6 @@ class MovieDetailFragment : Fragment() {
                 }
             }
         })
-
-        return inflater.inflate(R.layout.movie_detail_fragment, container, false)
-    }
-
-    override fun onStart() {
-        super.onStart()
         description.setOnClickListener {
             TransitionManager.beginDelayedTransition(view as ViewGroup)
             description.maxLines = Integer.MAX_VALUE
@@ -98,7 +103,7 @@ class MovieDetailFragment : Fragment() {
             .load(BaseUrl.getPosterPath(movie.posterPath))
             .into(movie_poster_image)
 
-        movie_title.text = movie.title
+//        movie_title.text = movie.title
         Toast.makeText(context, "Id: ${movie.id}", Toast.LENGTH_LONG).show()
     }
 }
