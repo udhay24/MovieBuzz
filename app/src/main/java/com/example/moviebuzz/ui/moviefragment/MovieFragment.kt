@@ -16,6 +16,7 @@ import com.example.moviebuzz.repository.model.movie.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MovieFragment : Fragment() {
 
@@ -85,11 +86,14 @@ class MovieFragment : Fragment() {
                     "Loading",
                     Toast.LENGTH_SHORT
                 ).show()
-                NetworkStatus.FAILURE -> Toast.makeText(
-                    this@MovieFragment.context,
-                    "Error Try again",
-                    Toast.LENGTH_SHORT
-                ).show()
+                NetworkStatus.FAILURE -> {
+                    Toast.makeText(
+                        this@MovieFragment.context,
+                        "Error Try again",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    Timber.e(it.message)
+                }
             }
         })
 

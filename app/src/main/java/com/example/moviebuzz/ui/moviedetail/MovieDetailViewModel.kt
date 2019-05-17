@@ -17,5 +17,24 @@ class MovieDetailViewModel(movieRepository: MovieRepository, val movieId: Int) :
         }
     }
 
-    val name = "Nothing"
+    val movieRating = Transformations.map(movie) {
+        when (it.status) {
+            NetworkStatus.SUCCESS -> it.data?.voteAverage
+            else -> 0.0
+        }
+    }
+
+    val runningTime = Transformations.map(movie) {
+        when (it.status) {
+            NetworkStatus.SUCCESS -> it.data?.runtime
+            else -> 0
+        }
+    }
+
+    val description = Transformations.map(movie) {
+        when (it.status) {
+            NetworkStatus.SUCCESS -> it.data?.overview
+            else -> ""
+        }
+    }
 }
