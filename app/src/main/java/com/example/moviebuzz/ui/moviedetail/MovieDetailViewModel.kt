@@ -16,4 +16,6 @@ class MovieDetailViewModel(movieRepository: MovieRepository, val movieId: Int) :
             NetworkStatus.SUCCESS -> it.data?.title
         }
     }
+
+    val name = "Nothing"
 }
