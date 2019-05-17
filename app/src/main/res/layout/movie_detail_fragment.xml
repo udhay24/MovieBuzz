@@ -103,7 +103,7 @@
                             android:drawableEnd="@drawable/ic_star"
                             android:drawablePadding="4dp"
                             android:gravity="center"
-                            android:text="@{`` + viewModel.movieRating}"
+                            android:text="@{Double.toString(safeUnbox(viewModel.movieRating))}"
                             />
 
                     <TextView
@@ -115,7 +115,7 @@
                             tools:text="79 mins"
                             app:layout_constraintBottom_toBottomOf="@+id/rating_text_view"
                             app:layout_constraintTop_toTopOf="@+id/rating_text_view"
-                            android:text="@{viewModel.runningTime + `min`}"
+                            android:text="@{viewModel.runningTime + `  `+ `min`}"
                             />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

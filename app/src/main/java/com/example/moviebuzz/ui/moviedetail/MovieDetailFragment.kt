@@ -53,6 +53,16 @@ class MovieDetailFragment : Fragment() {
                 NetworkStatus.SUCCESS -> {
                     setUpMovieLayout(it.data!!)
                 }
+                NetworkStatus.LOADING -> Toast.makeText(
+                    context,
+                    "Loading",
+                    Toast.LENGTH_SHORT
+                ).show()
+                NetworkStatus.FAILURE -> Toast.makeText(
+                    context,
+                    "Failure",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
         description.setOnClickListener {
