@@ -37,4 +37,11 @@ class MovieDetailViewModel(movieRepository: MovieRepository, val movieId: Int) :
             else -> ""
         }
     }
+
+    val posterImage = Transformations.map(movie) {
+        when (it.status) {
+            NetworkStatus.SUCCESS -> it.data?.posterPath
+            else -> ""
+        }
+    }
 }

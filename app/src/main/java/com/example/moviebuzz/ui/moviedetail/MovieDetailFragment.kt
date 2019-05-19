@@ -110,9 +110,9 @@ class MovieDetailFragment : Fragment() {
             .load(BaseUrl.getBackdropPath(movie.backdropPath))
             .into(background_image)
 
-        Picasso.get()
-            .load(BaseUrl.getPosterPath(movie.posterPath))
-            .into(movie_poster_image)
+//        Picasso.get()
+//            .load(BaseUrl.getPosterPath(movie.posterPath))
+//            .into(movie_poster_image)
 
 //        movie_title.text = movie.title
         Toast.makeText(context, "Id: ${movie.id}", Toast.LENGTH_LONG).show()
