@@ -18,19 +18,6 @@
             tools:context=".ui.moviedetail.MovieDetailFragment"
             >
 
-        <!--<com.google.android.material.appbar.AppBarLayout-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_width="match_parent"-->
-        <!--&gt;-->
-        <!--<androidx.appcompat.widget.Toolbar-->
-        <!--android:id="@+id/tool_bar"-->
-        <!--android:layout_height="?attr/actionBarSize"-->
-        <!--android:layout_width="match_parent"-->
-        <!--app:layout_scrollFlags="scroll"-->
-        <!--/>-->
-        <!---->
-        <!--</com.google.android.material.appbar.AppBarLayout>-->
-
         <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -52,6 +39,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:srcCompat="@tools:sample/backgrounds/scenic[4]"
+                        app:tmdbBackdropImageUrl="@{viewModel.backdropImageUrl}"
                         />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +63,7 @@
                             app:layout_constraintTop_toTopOf="parent"
                             android:layout_marginStart="24dp"
                             android:layout_marginTop="32dp"
-                            app:tmdbImageUrl="@{viewModel.posterImage}"
+                            app:tmdbPosterImageUrl="@{viewModel.posterImageUrl}"
                             />
 
                     <TextView
@@ -85,7 +73,7 @@
                             tools:text="Spider-Man: Into the spider-verse"
                             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                             app:layout_constraintTop_toTopOf="@+id/movie_poster_image"
-                            android:layout_marginStart="16dp"
+                            android:layout_marginStart="8dp"
                             app:layout_constraintStart_toEndOf="@+id/movie_poster_image"
                             app:layout_constraintEnd_toEndOf="parent"
                             android:layout_marginEnd="32dp"

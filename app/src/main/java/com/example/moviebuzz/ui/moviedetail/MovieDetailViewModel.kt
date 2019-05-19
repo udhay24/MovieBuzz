@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.repository.remote.MovieRepository
 
-class MovieDetailViewModel(movieRepository: MovieRepository, val movieId: Int) : ViewModel() {
+class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : ViewModel() {
 
     val movie = movieRepository.fetchMovieById(movieId)
 
@@ -38,10 +38,19 @@ class MovieDetailViewModel(movieRepository: MovieRepository, val movieId: Int) :
         }
     }
 
-    val posterImage = Transformations.map(movie) {
+    val posterImageUrl = Transformations.map(movie) {
         when (it.status) {
             NetworkStatus.SUCCESS -> it.data?.posterPath
             else -> ""
         }
     }
+
+    val backdropImageUrl = Transformations.map(movie) {
+        when (it.status) {
+            NetworkStatus.SUCCESS -> it.data?.backdropPath
+            else -> ""
+        }
+    }
+
+
 }

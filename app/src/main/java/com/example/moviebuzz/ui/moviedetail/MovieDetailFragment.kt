@@ -15,11 +15,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.moviebuzz.R
 import com.example.moviebuzz.databinding.MovieDetailFragmentBinding
-import com.example.moviebuzz.network.BaseUrl
 import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.repository.model.movie.Movie
 import com.example.moviebuzz.ui.mainactivity.MainActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -106,15 +104,8 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setUpMovieLayout(movie: Movie) {
-        Picasso.get()
-            .load(BaseUrl.getBackdropPath(movie.backdropPath))
-            .into(background_image)
 
-//        Picasso.get()
-//            .load(BaseUrl.getPosterPath(movie.posterPath))
-//            .into(movie_poster_image)
 
-//        movie_title.text = movie.title
         Toast.makeText(context, "Id: ${movie.id}", Toast.LENGTH_LONG).show()
     }
 }
