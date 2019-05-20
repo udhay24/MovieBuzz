@@ -6,4 +6,6 @@
     <string name="tv_shows_bottom_nav_title">Tv Shows</string>
     <string name="search_bottom_nav_title">Search</string>
     <string name="about_bottom_nav_title">About</string>
+    <string name="favorite">Favorite</string>
+    <string name="watch_later">watch later</string>
 </resources>

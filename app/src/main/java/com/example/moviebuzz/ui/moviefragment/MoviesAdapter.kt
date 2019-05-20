@@ -1,5 +1,6 @@
 package com.example.moviebuzz.ui.moviefragment
 
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -178,6 +179,20 @@ class UpComingMoviesAdapter(
 
         override fun onClick(v: View?) {
             clickListener.invoke(results[adapterPosition].id)
+        }
+    }
+}
+
+class MarginItemDecorator(private val margin: Int) : RecyclerView.ItemDecoration() {
+    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+        super.getItemOffsets(outRect, view, parent, state)
+        with(outRect) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                left = margin
+            }
+            top = margin
+            right = margin
+            bottom = margin
         }
     }
 }

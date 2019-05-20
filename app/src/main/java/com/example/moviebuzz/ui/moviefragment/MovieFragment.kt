@@ -8,8 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
 import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.repository.model.movie.*
@@ -117,12 +115,21 @@ class MovieFragment : Fragment() {
     }
 
     private fun setUpPopularMovieView(popularMovies: PopularMovies) {
-        popular_movies_recycler_view.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         popular_movies_recycler_view.adapter = PopularMoviesAdapter(popularMovies) { openMovieDetailView(it) }
+        popular_movies_recycler_view.addItemDecoration(
+            MarginItemDecorator(
+                resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+            )
+        )
     }
 
     private fun setUpNowPlayingMovies(nowPlayingMovies: NowPlayingMovies) {
         now_playing_recycler_view.adapter = NowPlayingMoviesAdapter(nowPlayingMovies) { openMovieDetailView(it) }
+        now_playing_recycler_view.addItemDecoration(
+            MarginItemDecorator(
+                resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+            )
+        )
     }
 
     private fun showLatestMovie(latestMovies: LatestMovies) {
@@ -135,10 +142,20 @@ class MovieFragment : Fragment() {
 
     private fun showTopRatedMovies(results: List<TopRatedMovies.Result>) {
         top_rated_movie_recycler_view.adapter = TopRatedMoviesAdapter(results) { openMovieDetailView(it) }
+        top_rated_movie_recycler_view.addItemDecoration(
+            MarginItemDecorator(
+                resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+            )
+        )
     }
 
     private fun showUpComingMovies(results: List<UpComingMovies.Result>) {
         up_coming_movie_recycler_view.adapter = UpComingMoviesAdapter(results) { openMovieDetailView(it) }
+        up_coming_movie_recycler_view.addItemDecoration(
+            MarginItemDecorator(
+                resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+            )
+        )
     }
 
     private fun openMovieDetailView(movieId: Int) {
