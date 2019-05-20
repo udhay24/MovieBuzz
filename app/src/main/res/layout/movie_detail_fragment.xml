@@ -54,24 +54,32 @@
                         android:background="@drawable/fade_image_gradient"
                         >
 
-                    <ImageView
-                            android:layout_width="120dp"
-                            android:layout_height="140dp"
-                            tools:src="@tools:sample/avatars"
+                    <androidx.cardview.widget.CardView
                             android:id="@+id/movie_poster_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginStart="24dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="32dp"
-                            app:tmdbPosterImageUrl="@{viewModel.posterImageUrl}"
-                            />
+                            app:cardCornerRadius="4dp"
+                            >
+
+                        <ImageView
+                                android:layout_width="110dp"
+                                android:layout_height="125dp"
+                                tools:src="@tools:sample/avatars"
+                                android:scaleType="centerCrop"
+                                app:tmdbPosterImageUrl="@{viewModel.posterImageUrl}"
+                                />
+                    </androidx.cardview.widget.CardView>
 
                     <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:id="@+id/movie_title"
                             tools:text="Spider-Man: Into the spider-verse"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Large"
                             app:layout_constraintTop_toTopOf="@+id/movie_poster_image"
                             android:layout_marginStart="8dp"
                             app:layout_constraintStart_toEndOf="@+id/movie_poster_image"
@@ -79,6 +87,8 @@
                             android:layout_marginEnd="32dp"
                             app:layout_constraintHorizontal_bias="0.0"
                             android:text="@{viewModel.movieName}"
+                            android:textSize="18sp"
+                            android:fontFamily="sans-serif-condensed-medium"
                             />
 
                     <TextView
