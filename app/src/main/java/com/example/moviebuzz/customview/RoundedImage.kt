@@ -1,16 +1,20 @@
 package com.example.moviebuzz.customview
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Paint.ANTI_ALIAS_FLAG
+import android.graphics.Path
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffXfermode
+import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
 import androidx.core.view.ViewCompat
 import com.example.moviebuzz.R
 
-
-class RoundedImageView : ImageView {
+class RoundedImage : ImageView {
     private var mMaskPath: Path? = null
     private val mMaskPaint = Paint(ANTI_ALIAS_FLAG)
     private var mCornerRadius: Float = 10f

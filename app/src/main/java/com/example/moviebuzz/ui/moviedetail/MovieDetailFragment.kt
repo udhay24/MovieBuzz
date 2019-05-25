@@ -33,7 +33,8 @@ class MovieDetailFragment : Fragment() {
     private val viewModel: MovieDetailViewModel by viewModel { parametersOf(args.movieId) }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
@@ -104,7 +105,6 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun setUpMovieLayout(movie: Movie) {
-
 
         Toast.makeText(context, "Id: ${movie.id}", Toast.LENGTH_LONG).show()
     }

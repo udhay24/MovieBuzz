@@ -5,8 +5,8 @@ import androidx.lifecycle.MediatorLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
-abstract class NetworkBoundResource<ResultType, RequestType>
-    :CoroutineScope by CoroutineScope(Dispatchers.Default){
+abstract class NetworkBoundResource<ResultType, RequestType> :
+    CoroutineScope by CoroutineScope(Dispatchers.Default) {
 
     private val result = MediatorLiveData<Resource<ResultType>>()
 
@@ -14,18 +14,17 @@ abstract class NetworkBoundResource<ResultType, RequestType>
         fetchFromNetwork()
     }
 
-    private fun setValue(value: Resource<ResultType>){
-
-        if(result.value != value){
+    private fun setValue(value: Resource<ResultType>) {
+        if (result.value != value) {
             result.value = value
         }
     }
 
     private fun fetchFromNetwork() {
         val apiResult = networkCall()
-        result.addSource(apiResult){ data ->
+        result.addSource(apiResult) { data ->
             //            result.removeSource(apiResult)
-            when(data){
+            when (data) {
                 is ApiSuccessResponse -> {
                     setValue(Resource.success(convertToResultType(data.body)))
                 }
@@ -44,5 +43,4 @@ abstract class NetworkBoundResource<ResultType, RequestType>
     abstract fun networkCall(): LiveData<ApiResponse<RequestType>>
 
     abstract fun convertToResultType(requestType: RequestType): ResultType
-
 }

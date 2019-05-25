@@ -1,6 +1,5 @@
 package com.example.moviebuzz.repository.model.movie
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Movie(

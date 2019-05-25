@@ -2,7 +2,12 @@ package com.example.moviebuzz.repository.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moviebuzz.network.*
+import com.example.moviebuzz.network.ApiEmptyResponse
+import com.example.moviebuzz.network.ApiErrorResponse
+import com.example.moviebuzz.network.ApiResponse
+import com.example.moviebuzz.network.ApiSuccessResponse
+import com.example.moviebuzz.network.NetworkBoundResource
+import com.example.moviebuzz.network.Resource
 import com.example.moviebuzz.repository.model.tvshows.PopularTvShows
 import com.example.moviebuzz.repository.model.tvshows.TvAiringToday
 import com.example.moviebuzz.repository.tmdb_service.TvService

@@ -1,12 +1,11 @@
 package com.example.moviebuzz.ui.aboutfragment
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import com.example.moviebuzz.R
 
 class AboutFragment : Fragment() {
@@ -18,7 +17,8 @@ class AboutFragment : Fragment() {
     private lateinit var viewModel: AboutViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.about_fragment, container, false)
@@ -28,5 +28,4 @@ class AboutFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(AboutViewModel::class.java)
     }
-
 }

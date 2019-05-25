@@ -23,7 +23,8 @@ class TvShowsFragment : Fragment() {
     private val popularTvShowsAdapter: PopularTvShowsAdapter = PopularTvShowsAdapter(null)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.tv_shows_fragment, container, false)

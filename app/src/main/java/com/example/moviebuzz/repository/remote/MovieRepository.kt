@@ -2,8 +2,18 @@ package com.example.moviebuzz.repository.remote
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moviebuzz.network.*
-import com.example.moviebuzz.repository.model.movie.*
+import com.example.moviebuzz.network.ApiEmptyResponse
+import com.example.moviebuzz.network.ApiErrorResponse
+import com.example.moviebuzz.network.ApiResponse
+import com.example.moviebuzz.network.ApiSuccessResponse
+import com.example.moviebuzz.network.NetworkBoundResource
+import com.example.moviebuzz.network.Resource
+import com.example.moviebuzz.repository.model.movie.LatestMovies
+import com.example.moviebuzz.repository.model.movie.Movie
+import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
+import com.example.moviebuzz.repository.model.movie.PopularMovies
+import com.example.moviebuzz.repository.model.movie.TopRatedMovies
+import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

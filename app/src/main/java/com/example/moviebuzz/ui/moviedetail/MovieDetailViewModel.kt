@@ -51,6 +51,4 @@ class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : Vie
             else -> ""
         }
     }
-
-
 }

@@ -17,8 +17,7 @@ import com.squareup.picasso.Picasso
 class PopularMoviesAdapter(
     private val popularMovies: PopularMovies,
     private val movieClickListener: (Int) -> Unit
-)
-    : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
+) : RecyclerView.Adapter<PopularMoviesAdapter.PopularMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMoviesViewHolder {
 
@@ -61,8 +60,7 @@ class PopularMoviesAdapter(
 class NowPlayingMoviesAdapter(
     private val nowPlayingMovies: NowPlayingMovies,
     private val movieClickListener: (Int) -> Unit
-)
-    :RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMovieViewHolder>(){
+) : RecyclerView.Adapter<NowPlayingMoviesAdapter.NowPlayingMovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NowPlayingMovieViewHolder {
 
@@ -145,8 +143,7 @@ class TopRatedMoviesAdapter(
 class UpComingMoviesAdapter(
     private val results: List<UpComingMovies.Result>,
     private val movieClickListener: (Int) -> Unit
-) :
-    RecyclerView.Adapter<UpComingMoviesAdapter.UpComingMoviesViewHolder>() {
+) : RecyclerView.Adapter<UpComingMoviesAdapter.UpComingMoviesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpComingMoviesViewHolder {
 
@@ -157,7 +154,6 @@ class UpComingMoviesAdapter(
         view.setOnClickListener(holder)
         return holder
     }
-
 
     override fun getItemCount(): Int = results.size
 
@@ -196,4 +192,3 @@ class MarginItemDecorator(private val margin: Int) : RecyclerView.ItemDecoration
         }
     }
 }
-

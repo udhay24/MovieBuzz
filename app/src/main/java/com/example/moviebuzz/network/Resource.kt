@@ -11,6 +11,6 @@ data class Resource <out T> (var status: NetworkStatus, val data: T?, val messag
     }
 }
 
-enum class NetworkStatus{
+enum class NetworkStatus {
     SUCCESS, LOADING, FAILURE,
 }

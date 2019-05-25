@@ -24,7 +24,6 @@ val httpLoggingInterceptor: HttpLoggingInterceptor = {
     httpLoggingInterceptor
 }.invoke()
 
-
 val okHttpClient: OkHttpClient = {
     OkHttpClient.Builder()
         .addInterceptor {
@@ -60,13 +59,9 @@ val tvService: TvService = retrofit.create(TvService::class.java)
 
 val tvRepository: TvRepository = TvRepository(tvService)
 
-
 val networkModule = module {
-
     single { movieRepository }
-
     single { tvRepository }
-
 }
 
 val viewModel = module {

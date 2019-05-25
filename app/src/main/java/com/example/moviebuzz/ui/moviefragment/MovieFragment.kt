@@ -10,7 +10,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.moviebuzz.R
 import com.example.moviebuzz.network.NetworkStatus
-import com.example.moviebuzz.repository.model.movie.*
+import com.example.moviebuzz.repository.model.movie.LatestMovies
+import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
+import com.example.moviebuzz.repository.model.movie.PopularMovies
+import com.example.moviebuzz.repository.model.movie.TopRatedMovies
+import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*
 import org.koin.android.ext.android.inject
