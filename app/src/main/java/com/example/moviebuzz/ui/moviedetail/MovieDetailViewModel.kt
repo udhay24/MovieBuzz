@@ -1,5 +1,10 @@
 package com.example.moviebuzz.ui.moviedetail
 
+import android.text.TextUtils
+import android.transition.TransitionManager
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.moviebuzz.network.NetworkStatus
@@ -49,6 +54,14 @@ class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : Vie
         when (it.status) {
             NetworkStatus.SUCCESS -> it.data?.backdropPath
             else -> ""
+        }
+    }
+
+    fun expandTextView(view: View) {
+        TransitionManager.beginDelayedTransition(view.parent as ViewGroup)
+        if (view is TextView) {
+            view.maxLines = Integer.MAX_VALUE
+            view.ellipsize = TextUtils.TruncateAt.MARQUEE
         }
     }
 }

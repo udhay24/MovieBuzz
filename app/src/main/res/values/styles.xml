@@ -6,9 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
+    <style name="BottomNavigation" parent="Widget.Design.BottomNavigationView">
         <item name="itemBackground">@color/colorPrimary</item>
         <item name="elevation">4dp</item>
         <item name="itemIconTint">@drawable/bottom_navigation_selector</item>
