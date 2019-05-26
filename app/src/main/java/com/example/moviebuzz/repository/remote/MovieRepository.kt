@@ -10,8 +10,10 @@ import com.example.moviebuzz.network.NetworkBoundResource
 import com.example.moviebuzz.network.Resource
 import com.example.moviebuzz.repository.model.movie.LatestMovies
 import com.example.moviebuzz.repository.model.movie.Movie
+import com.example.moviebuzz.repository.model.movie.MovieReview
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
 import com.example.moviebuzz.repository.model.movie.PopularMovies
+import com.example.moviebuzz.repository.model.movie.SimilarMovies
 import com.example.moviebuzz.repository.model.movie.TopRatedMovies
 import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.example.moviebuzz.repository.tmdb_service.MovieService
@@ -160,6 +162,54 @@ class MovieRepository constructor(private val movieService: MovieService)
             }
 
             override fun convertToResultType(requestType: Movie): Movie = requestType
+        }.asLiveData()
+    }
+
+    fun fetchMovieReviews(movieId: Int): LiveData<Resource<MovieReview>> {
+        return object : NetworkBoundResource<MovieReview, MovieReview>() {
+            override fun networkCall(): LiveData<ApiResponse<MovieReview>> {
+                val result = MutableLiveData<ApiResponse<MovieReview>>(ApiEmptyResponse())
+                launch {
+                    val networkResponse = movieService.getMovieReviewsAsync(movieId).await()
+                    if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                        result.postValue(
+                            ApiSuccessResponse(networkResponse.body()!!, "")
+                        )
+                    } else {
+                        result.postValue(
+                            ApiErrorResponse(networkResponse.errorBody().toString())
+                        )
+                    }
+                }
+                return result
+            }
+
+            override fun convertToResultType(requestType: MovieReview): MovieReview = requestType
+
+        }.asLiveData()
+    }
+
+    fun fetchSimilarMovies(movieId: Int): LiveData<Resource<SimilarMovies>> {
+        return object : NetworkBoundResource<SimilarMovies, SimilarMovies>() {
+            override fun networkCall(): LiveData<ApiResponse<SimilarMovies>> {
+                val result = MutableLiveData<ApiResponse<SimilarMovies>>(ApiEmptyResponse())
+                launch {
+                    val networkResponse = movieService.getSimilarMoviesAsync(movieId).await()
+                    if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                        result.postValue(
+                            ApiSuccessResponse(networkResponse.body()!!, "")
+                        )
+                    } else {
+                        result.postValue(
+                            ApiErrorResponse(networkResponse.errorBody().toString())
+                        )
+                    }
+                }
+                return result
+            }
+
+            override fun convertToResultType(requestType: SimilarMovies): SimilarMovies = requestType
+
         }.asLiveData()
     }
 }

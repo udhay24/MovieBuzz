@@ -38,7 +38,7 @@ val okHttpClient: OkHttpClient = {
 
             it.proceed(newRequest)
         }
-//            .addNetworkInterceptor(httpLoggingInterceptor)
+        .addNetworkInterceptor(httpLoggingInterceptor)
         .build()
 }.invoke()
 

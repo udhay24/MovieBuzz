@@ -2,8 +2,10 @@ package com.example.moviebuzz.repository.tmdb_service
 
 import com.example.moviebuzz.repository.model.movie.LatestMovies
 import com.example.moviebuzz.repository.model.movie.Movie
+import com.example.moviebuzz.repository.model.movie.MovieReview
 import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
 import com.example.moviebuzz.repository.model.movie.PopularMovies
+import com.example.moviebuzz.repository.model.movie.SimilarMovies
 import com.example.moviebuzz.repository.model.movie.TopRatedMovies
 import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import kotlinx.coroutines.Deferred
@@ -29,4 +31,10 @@ interface MovieService {
 
     @GET("movie/{movie_id}")
     fun getMovieDetailFromIdAsync(@Path("movie_id") id: Int): Deferred<Response<Movie>>
+
+    @GET("movie/{movie_id}/reviews")
+    fun getMovieReviewsAsync(@Path("movie_id") movieId: Int): Deferred<Response<MovieReview>>
+
+    @GET("movie/{movie_id}/similar")
+    fun getSimilarMoviesAsync(@Path("movie_id") movieId: Int): Deferred<Response<SimilarMovies>>
 }
