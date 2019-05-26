@@ -2,7 +2,7 @@ package com.example.moviebuzz.repository.model.movie
 
 data class LatestMovies(
     val adult: Boolean,
-    val backdrop_path: Any,
+    val backdrop_path: String,
     val belongs_to_collection: Any,
     val budget: Int,
     val genres: List<Genre>,
@@ -13,7 +13,7 @@ data class LatestMovies(
     val original_title: String,
     val overview: String,
     val popularity: Int,
-    val poster_path: Any,
+    val poster_path: String,
     val production_companies: List<Any>,
     val production_countries: List<Any>,
     val release_date: String,
