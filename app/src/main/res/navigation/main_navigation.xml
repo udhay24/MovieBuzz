@@ -38,5 +38,15 @@
                 app:argType="integer"
                 android:defaultValue="-1"
                 />
+        <action
+                android:id="@+id/action_movieDetail_self"
+                app:destination="@+id/movieDetail"
+                app:launchSingleTop="false"
+                >
+            <argument
+                    android:defaultValue="-1"
+                    android:name="movie_id"
+                    />
+        </action>
     </fragment>
 </navigation>

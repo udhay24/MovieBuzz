@@ -5,10 +5,8 @@ import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.moviebuzz.network.BaseUrl
 import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.repository.remote.MovieRepository
 
@@ -59,16 +57,7 @@ class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : Vie
         }
     }
 
-    private val similarMovies = movieRepository.fetchSimilarMovies(movieId)
-
-    val similarMoviesPosterList: LiveData<List<String>> = Transformations.map(similarMovies) {
-        when (it.status) {
-            NetworkStatus.SUCCESS -> {
-                it.data!!.results.map { similarMovies -> BaseUrl.getPosterPath(similarMovies.poster_path) }
-            }
-            else -> emptyList()
-        }
-    }
+    val similarMovies = movieRepository.fetchSimilarMovies(movieId)
 
     fun expandTextView(view: View) {
         TransitionManager.beginDelayedTransition(view.parent as ViewGroup)

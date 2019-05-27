@@ -1,18 +1,19 @@
 package com.example.moviebuzz.ui.moviedetail
 
-import android.animation.Animator
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.moviebuzz.R
 import com.example.moviebuzz.databinding.MovieDetailFragmentBinding
-import com.example.moviebuzz.ui.mainactivity.MainActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.moviebuzz.network.NetworkStatus
+import com.example.moviebuzz.ui.moviefragment.MarginItemDecorator
+import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -35,41 +36,22 @@ class MovieDetailFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.movie_detail_fragment, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-        binding.fragment = this
+
+        viewModel.similarMovies.observe(this, Observer {
+            when (it.status) {
+                NetworkStatus.SUCCESS -> {
+                    similar_movies_recycler_view.adapter = SimilarMoviesAdapter(
+                        it.data!!
+                    ) { movieId: Int ->
+                        val navDirections = MovieDetailFragmentDirections.actionMovieDetailSelf(movieId)
+                        findNavController().navigate(navDirections)
+                    }
+                    similar_movies_recycler_view.addItemDecoration(MarginItemDecorator(10))
+                }
+                else -> Unit
+            }
+        }
+        )
         return binding.root
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        (activity as MainActivity).bottom_navigation.apply {
-            animate()
-                .translationYBy(this.height.toFloat())
-                .setListener(object : Animator.AnimatorListener {
-                    override fun onAnimationRepeat(animation: Animator?) {}
-                    override fun onAnimationEnd(animation: Animator?) {}
-                    override fun onAnimationCancel(animation: Animator?) {}
-                    override fun onAnimationStart(animation: Animator?) {
-                        this@apply.visibility = View.GONE
-                    }
-                })
-                .duration = 200
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        (activity as MainActivity).bottom_navigation.apply {
-            animate()
-                .translationYBy(-this.height.toFloat())
-                .setListener(object : Animator.AnimatorListener {
-                    override fun onAnimationRepeat(animation: Animator?) {}
-                    override fun onAnimationEnd(animation: Animator?) {}
-                    override fun onAnimationCancel(animation: Animator?) {}
-                    override fun onAnimationStart(animation: Animator?) {
-                        this@apply.visibility = View.VISIBLE
-                    }
-                })
-                .duration = 200
-        }
     }
 }
