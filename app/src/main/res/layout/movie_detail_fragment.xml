@@ -10,6 +10,11 @@
                 name="viewModel"
                 type="com.example.moviebuzz.ui.moviedetail.MovieDetailViewModel"
                 />
+
+        <variable
+                name="fragment"
+                type="com.example.moviebuzz.ui.moviedetail.MovieDetailFragment"
+                />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -192,7 +197,8 @@
                 tools:listitem="@layout/single_image_layout"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                recyclerViewData="@{viewModel.similarMoviesPosterList}"
+                app:recyclerViewData="@{viewModel.similarMoviesPosterList}"
+                app:life_cycle_owner="@{fragment}"
                 />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

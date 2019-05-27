@@ -11,6 +11,11 @@
                 name="viewModel"
                 type="com.example.moviebuzz.ui.moviefragment.MovieViewModel"
                 />
+
+        <variable
+                name="fragment"
+                type="com.example.moviebuzz.ui.moviefragment.MovieFragment"
+                />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -70,6 +75,7 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         app:recyclerViewData="@{viewModel.nowPlayingMoviePosterList}"
+                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -176,6 +182,7 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         app:recyclerViewData="@{viewModel.topRatedMoviesPosterList}"
+                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -223,6 +230,7 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         app:recyclerViewData="@{viewModel.popularMoviePosterList}"
+                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -269,6 +277,7 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         app:recyclerViewData="@{viewModel.upComingMoviesPosterList}"
+                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,6 +35,7 @@ class MovieDetailFragment : Fragment() {
             DataBindingUtil.inflate(inflater, R.layout.movie_detail_fragment, container, false)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
+        binding.fragment = this
         return binding.root
     }
 

@@ -2,6 +2,7 @@ package com.example.moviebuzz.bindingadapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,17 +30,17 @@ fun ImageView.setTmdbBackDropImageUrl(imageUrl: LiveData<String>?) {
         .into(this)
 }
 
-@BindingAdapter("recyclerViewData")
-fun setUpRecyclerView(recyclerView: RecyclerView, data: LiveData<List<String>>) {
+@BindingAdapter("recyclerViewData", "life_cycle_owner", requireAll = true)
+fun setUpRecyclerView(recyclerView: RecyclerView, data: LiveData<List<String>>, lifecycleOwner: LifecycleOwner) {
     val adapter = CommonRecyclerAdapter(emptyList())
     recyclerView.layoutManager = LinearLayoutManager(recyclerView.context, RecyclerView.HORIZONTAL, false)
     recyclerView.addItemDecoration(MarginItemDecorator(recyclerView.context.resources.getDimensionPixelSize(R.dimen.recycler_view_margin)))
     recyclerView.adapter = adapter
-    val observer = Observer<List<String>> {
+    data.observe(lifecycleOwner, Observer<List<String>> {
         Timber.v("${it.size}")
         if (it.isNotEmpty()) {
             adapter.swapData(it)
         }
     }
-    data.observeForever(observer)
+    )
 }

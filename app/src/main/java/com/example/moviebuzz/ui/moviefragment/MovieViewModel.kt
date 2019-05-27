@@ -14,7 +14,7 @@ class MovieViewModel(movieRepository: MovieRepository)
 
     private val popularMovies = movieRepository.fetchPopularMovies()
     private val nowPlayingMovies = movieRepository.fetchNowPlayingMovies()
-    private val latestMovie = movieRepository.fetchLatestMovie()
+    val latestMovie = movieRepository.fetchLatestMovie()
     private val topRatedMovies = movieRepository.fetchTopRatedMovies()
     private val upcomingMovies = movieRepository.fetchUpComingMovies()
 
@@ -64,8 +64,8 @@ class MovieViewModel(movieRepository: MovieRepository)
 
     val latestMovieName = Transformations.map(latestMovie) {
         when (it.status) {
-            NetworkStatus.SUCCESS -> it.data?.title ?: "No Name"
-            else -> "No Name"
+            NetworkStatus.SUCCESS -> it.data?.title
+            else -> ""
         }
     }
     val latestMoviePosterUrl = Transformations.map(latestMovie) {

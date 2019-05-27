@@ -27,6 +27,8 @@ class MovieFragment : Fragment() {
         val dataBinding: MovieFragmentBinding =
             DataBindingUtil.inflate(inflater, R.layout.movie_fragment, container, false)
         dataBinding.viewModel = viewModel
+        dataBinding.lifecycleOwner = this
+        dataBinding.fragment = this
         return dataBinding.root
     }
 
