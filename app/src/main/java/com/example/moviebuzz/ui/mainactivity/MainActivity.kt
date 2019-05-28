@@ -21,9 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.movieFragment, R.id.tvShowsFragment, R.id.searchFragment, R.id.aboutFragment -> {
+                R.id.movieFragment, R.id.tvShowsFragment, R.id.searchFragment, R.id.aboutFragment ->
                     bottom_navigation.apply {
-                        if (visibility == View.GONE) {
+                        if (visibility == View.GONE)
                             animate()
                                 .translationYBy(-this.height.toFloat())
                                 .setListener(object : Animator.AnimatorListener {
@@ -35,12 +35,11 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 })
                                 .duration = 200
-                        }
+
                     }
-                }
-                else -> {
+                else ->
                     bottom_navigation.apply {
-                        if (visibility == View.VISIBLE) {
+                        if (visibility == View.VISIBLE)
                             animate()
                                 .translationYBy(this.height.toFloat())
                                 .setListener(object : Animator.AnimatorListener {
@@ -52,8 +51,7 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 })
                                 .duration = 200
-                        }
-                    }
+
                 }
             }
         }

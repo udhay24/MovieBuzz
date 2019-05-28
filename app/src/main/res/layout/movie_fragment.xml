@@ -74,8 +74,6 @@
                         tools:listitem="@layout/single_image_layout"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
-                        app:recyclerViewData="@{viewModel.nowPlayingMoviePosterList}"
-                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -119,7 +117,7 @@
                         app:layout_constraintStart_toStartOf="@+id/textView3"
                         app:layout_constraintBottom_toBottomOf="parent"
                         android:layout_marginBottom="16dp"
-                        tmdbPosterImageUrl="@{viewModel.latestMoviePosterUrl}"
+                        tmdbPosterImageUrl="@{viewModel.latesMovieposterUrl}"
                         />
 
                 <TextView
@@ -181,8 +179,6 @@
                         tools:listitem="@layout/single_image_layout"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
-                        app:recyclerViewData="@{viewModel.topRatedMoviesPosterList}"
-                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -229,8 +225,6 @@
                         tools:listitem="@layout/single_image_layout"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
-                        app:recyclerViewData="@{viewModel.popularMoviePosterList}"
-                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -276,8 +270,6 @@
                         tools:listitem="@layout/single_image_layout"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
-                        app:recyclerViewData="@{viewModel.upComingMoviesPosterList}"
-                        app:life_cycle_owner="@{fragment}"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
