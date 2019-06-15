@@ -142,6 +142,9 @@ class MovieFragment : Fragment() {
         Picasso.get()
             .load(imageUrl)
             .into(latest_movie_poster)
+        latest_movie_container.setOnClickListener {
+            openMovieDetailView(latestMovies.id)
+        }
     }
 
     private fun showTopRatedMovies(results: List<TopRatedMovies.Result>) {

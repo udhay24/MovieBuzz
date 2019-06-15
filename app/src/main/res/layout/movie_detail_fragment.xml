@@ -12,190 +12,196 @@
                 />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.moviedetail.MovieDetailFragment"
             >
 
-        <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:id="@+id/background_image"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/backgrounds/scenic[4]"
-                app:tmdbBackdropImageUrl="@{viewModel.backdropImageUrl}"
-                />
-
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@+id/background_image"
-                android:id="@+id/constraintLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/space"
-                android:background="@drawable/fade_image_gradient"
+                android:layout_height="match_parent"
                 >
 
-            <androidx.cardview.widget.CardView
-                    android:id="@+id/movie_poster_image"
+            <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
+                    android:id="@+id/background_image"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
-                    app:cardCornerRadius="4dp"
+                    tools:srcCompat="@tools:sample/backgrounds/scenic[4]"
+                    app:tmdbBackdropImageUrl="@{viewModel.backdropImageUrl}"
+                    />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/background_image"
+                    android:id="@+id/constraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/space"
+                    android:background="@drawable/fade_image_gradient"
                     >
 
-                <ImageView
-                        android:layout_width="120dp"
-                        android:layout_height="140dp"
-                        tools:src="@tools:sample/avatars"
-                        android:scaleType="centerCrop"
-                        app:tmdbPosterImageUrl="@{viewModel.posterImageUrl}"
+                <androidx.cardview.widget.CardView
+                        android:id="@+id/movie_poster_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="32dp"
+                        app:cardCornerRadius="4dp"
+                        >
+
+                    <ImageView
+                            android:layout_width="120dp"
+                            android:layout_height="140dp"
+                            tools:src="@tools:sample/avatars"
+                            android:scaleType="centerCrop"
+                            app:tmdbPosterImageUrl="@{viewModel.posterImageUrl}"
+                            />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/movie_title"
+                        tools:text="Spider-Man: Into the spider-verse"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        app:layout_constraintTop_toTopOf="@+id/movie_poster_image"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/movie_poster_image"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="32dp"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        android:text="@{viewModel.movieName}"
+                        android:textSize="18sp"
+                        android:fontFamily="sans-serif-condensed-medium"
                         />
-            </androidx.cardview.widget.CardView>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rating_text_view"
+                        app:layout_constraintStart_toStartOf="@+id/movie_title"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintTop_toBottomOf="@+id/movie_title"
+                        tools:text="4.5"
+                        android:drawableEnd="@drawable/ic_star"
+                        android:drawablePadding="4dp"
+                        android:gravity="center"
+                        android:text="@{Double.toString(safeUnbox(viewModel.movieRating))}"
+                        />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/running_time_text_view"
+                        app:layout_constraintStart_toEndOf="@+id/rating_text_view"
+                        android:layout_marginStart="8dp"
+                        tools:text="79 mins"
+                        app:layout_constraintBottom_toBottomOf="@+id/rating_text_view"
+                        app:layout_constraintTop_toTopOf="@+id/rating_text_view"
+                        android:text="@{viewModel.runningTime + `  `+ `min`}"
+                        />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
+                    android:id="@+id/description"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/movie_title"
-                    tools:text="Spider-Man: Into the spider-verse"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintTop_toTopOf="@+id/movie_poster_image"
-                    android:layout_marginStart="8dp"
-                    app:layout_constraintStart_toEndOf="@+id/movie_poster_image"
+                    android:text="@{viewModel.description}"
+                    android:maxLines="3"
+                    android:ellipsize="end"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginEnd="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    tools:text="Ace detective Harry Goodman goes mysteriously missing, prompting his 21-year-old son, Tim, to find out what happened. Aiding in the investigation is Harry's former Pokémon partner, wise-cracking, adorable super-sleuth Detective Pikachu. Finding that they are uniquely equipped to work together"
                     app:layout_constraintHorizontal_bias="0.0"
-                    android:text="@{viewModel.movieName}"
-                    android:textSize="18sp"
-                    android:fontFamily="sans-serif-condensed-medium"
+                    android:layout_marginTop="24dp"
+                    android:onClick="@{(view) -> viewModel.expandTextView(view)}"
                     />
 
-            <TextView
+            <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rating_text_view"
-                    app:layout_constraintStart_toStartOf="@+id/movie_title"
+                    app:layout_constraintBottom_toBottomOf="@+id/background_image"
                     android:layout_marginTop="8dp"
-                    app:layout_constraintTop_toBottomOf="@+id/movie_title"
-                    tools:text="4.5"
-                    android:drawableEnd="@drawable/ic_star"
-                    android:drawablePadding="4dp"
-                    android:gravity="center"
-                    android:text="@{Double.toString(safeUnbox(viewModel.movieRating))}"
+                    app:layout_constraintTop_toTopOf="@+id/background_image"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/space"
+                    />
+
+            <Button
+                    android:text="@string/favorite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/favorite_button"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toBottomOf="@+id/description"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="12dp"
+                    android:drawableStart="@drawable/ic_favorite_black_24dp"
+                    app:layout_constraintEnd_toStartOf="@+id/watch_later_button"
+                    android:layout_marginEnd="8dp"
+                    android:backgroundTint="@color/colorAccent"
+                    />
+
+            <Button
+                    android:text="@string/watch_later"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/watch_later_button"
+                    app:layout_constraintTop_toTopOf="@+id/favorite_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/favorite_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toEndOf="@+id/favorite_button"
+                    android:layout_marginStart="8dp"
+                    android:drawableStart="@drawable/ic_watch_later_black_24dp"
+                    android:backgroundTint="@color/colorAccent"
                     />
 
             <TextView
+                    android:text="@string/similar_movies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/running_time_text_view"
-                    app:layout_constraintStart_toEndOf="@+id/rating_text_view"
+                    android:id="@+id/similar_movies_label"
+                    android:layout_marginTop="24dp"
+                    app:layout_constraintTop_toBottomOf="@+id/favorite_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="16dp"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:fontFamily="sans-serif-black"
+                    />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/similar_movies_label"
+                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
-                    tools:text="79 mins"
-                    app:layout_constraintBottom_toBottomOf="@+id/rating_text_view"
-                    app:layout_constraintTop_toTopOf="@+id/rating_text_view"
-                    android:text="@{viewModel.runningTime + `  `+ `min`}"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:maxHeight="200dp"
+                    tools:listitem="@layout/single_image_layout"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    android:id="@+id/similar_movies_recycler_view"
                     />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-                android:id="@+id/description"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.description}"
-                android:maxLines="3"
-                android:ellipsize="end"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                tools:text="Ace detective Harry Goodman goes mysteriously missing, prompting his 21-year-old son, Tim, to find out what happened. Aiding in the investigation is Harry's former Pokémon partner, wise-cracking, adorable super-sleuth Detective Pikachu. Finding that they are uniquely equipped to work together"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:layout_marginTop="24dp"
-                android:onClick="@{(view) -> viewModel.expandTextView(view)}"
-                />
-
-        <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/background_image"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="@+id/background_image"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:id="@+id/space"
-                />
-
-        <Button
-                android:text="@string/favorite"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/favorite_button"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@+id/description"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="12dp"
-                android:drawableStart="@drawable/ic_favorite_black_24dp"
-                app:layout_constraintEnd_toStartOf="@+id/watch_later_button"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@color/colorAccent"
-                />
-
-        <Button
-                android:text="@string/watch_later"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/watch_later_button"
-                app:layout_constraintTop_toTopOf="@+id/favorite_button"
-                app:layout_constraintBottom_toBottomOf="@+id/favorite_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintStart_toEndOf="@+id/favorite_button"
-                android:layout_marginStart="8dp"
-                android:drawableStart="@drawable/ic_watch_later_black_24dp"
-                android:backgroundTint="@color/colorAccent"
-                />
-
-        <TextView
-                android:text="@string/similar_movies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/similar_movies_label"
-                android:layout_marginTop="24dp"
-                app:layout_constraintTop_toBottomOf="@+id/favorite_button"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="16dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:fontFamily="sans-serif-black"
-                />
-
-        <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/similar_movies_label"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:maxHeight="200dp"
-                tools:listitem="@layout/single_image_layout"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                android:id="@+id/similar_movies_recycler_view"
-                />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
