@@ -17,7 +17,7 @@ class MovieViewModel(movieRepository: MovieRepository)
     val topRatedMovies = movieRepository.fetchTopRatedMovies()
     val upcomingMovies = movieRepository.fetchUpComingMovies()
 
-    val latesMovieposterUrl = Transformations.map(latestMovie) {
+    val latestMoviePosterUrl = Transformations.map(latestMovie) {
         when (it.status) {
             NetworkStatus.SUCCESS -> BaseUrl.getPosterPath(it.data!!.poster_path)
             else -> ""

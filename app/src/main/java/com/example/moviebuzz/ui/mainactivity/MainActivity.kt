@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 })
                                 .duration = 200
-
                     }
                 else ->
                     bottom_navigation.apply {
@@ -51,7 +50,6 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 })
                                 .duration = 200
-
                 }
             }
         }
