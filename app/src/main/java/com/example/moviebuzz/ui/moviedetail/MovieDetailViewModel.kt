@@ -61,9 +61,13 @@ class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : Vie
 
     fun expandTextView(view: View) {
         TransitionManager.beginDelayedTransition(view.parent as ViewGroup)
-        if (view is TextView) {
+        if (view is TextView && view.maxLines != Integer.MAX_VALUE) {
             view.maxLines = Integer.MAX_VALUE
             view.ellipsize = TextUtils.TruncateAt.MARQUEE
+        } else if (view is TextView) {
+            view.maxLines = 3
+            view.ellipsize = TextUtils.TruncateAt.END
+
         }
     }
 }
