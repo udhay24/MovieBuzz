@@ -2,26 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/movieFragment"
-        android:title="@string/movies_bottom_nav_title"
-        android:icon="@drawable/ic_baseline_movie_24px"
-    />
-
-    <item android:id="@+id/tvShowsFragment"
-          android:title="@string/tv_shows_bottom_nav_title"
-          android:icon="@drawable/ic_baseline_tv_24px"
+            android:id="@+id/movie_fragment"
+            android:title="@string/movies_bottom_nav_title"
+            android:icon="@drawable/ic_baseline_movie_24px"
     />
 
     <item
-        android:id="@+id/searchFragment"
-        android:title="@string/search_bottom_nav_title"
-        android:icon="@drawable/ic_baseline_search_24px"
+            android:id="@+id/tv_shows_fragment"
+            android:title="@string/tv_shows_bottom_nav_title"
+            android:icon="@drawable/ic_baseline_tv_24px"
     />
 
     <item
-        android:id="@+id/aboutFragment"
-        android:title="@string/about_bottom_nav_title"
-        android:icon="@drawable/ic_baseline_account_circle_24px"
+            android:id="@+id/search_fragment"
+            android:title="@string/search_bottom_nav_title"
+            android:icon="@drawable/ic_baseline_search_24px"
+    />
+
+    <item
+            android:id="@+id/about_fragment"
+            android:title="@string/about_bottom_nav_title"
+            android:icon="@drawable/ic_baseline_account_circle_24px"
     />
 
 </menu>

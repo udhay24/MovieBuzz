@@ -6,22 +6,26 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.moviebuzz.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private val navController = findNavController(this, R.id.nav_controller_fragment)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val navController = findNavController(this, R.id.nav_controller_fragment)
+        setSupportActionBar(toolbar)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         setupWithNavController(bottomNavigationView, navController)
+        setupActionBarWithNavController(navController)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.movieFragment, R.id.tvShowsFragment, R.id.searchFragment, R.id.aboutFragment ->
+                R.id.movie_fragment, R.id.tv_shows_fragment, R.id.search_fragment, R.id.about_fragment ->
                     bottom_navigation.apply {
                         if (visibility == View.GONE)
                             animate()
@@ -54,4 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onSupportNavigateUp() = navController.navigateUp()
 }

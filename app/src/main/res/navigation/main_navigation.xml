@@ -2,14 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/main_navigation" app:startDestination="@id/movieFragment">
+            android:id="@+id/main_navigation"
+            app:startDestination="@id/movie_fragment"
+        >
 
-    <fragment android:id="@+id/movieFragment" android:name="com.example.moviebuzz.ui.moviefragment.MovieFragment"
-              android:label="MovieFragment"
+    <fragment
+            android:id="@+id/movie_fragment"
+            android:name="com.example.moviebuzz.ui.moviefragment.MovieFragment"
+            android:label="Movies"
             >
         <action
                 android:id="@+id/action_movieFragment_to_movieDetail"
-                app:destination="@id/movieDetail"
+                app:destination="@id/movie_detail_fragment"
                 app:popExitAnim="@anim/slide_center_to_bottom"
                 app:launchSingleTop="false"
                 app:popUpToInclusive="false"
@@ -21,14 +25,22 @@
                     />
         </action>
     </fragment>
-    <fragment android:id="@+id/tvShowsFragment" android:name="com.example.moviebuzz.ui.tvfragment.TvShowsFragment"
-              android:label="TvShowsFragment"/>
-    <fragment android:id="@+id/aboutFragment" android:name="com.example.moviebuzz.ui.aboutfragment.AboutFragment"
-              android:label="AboutFragment"/>
-    <fragment android:id="@+id/searchFragment" android:name="com.example.moviebuzz.ui.searchfragment.SearchFragment"
+    <fragment
+            android:id="@+id/tv_shows_fragment"
+            android:name="com.example.moviebuzz.ui.tvfragment.TvShowsFragment"
+            android:label="TvShowsFragment"/>
+    <fragment
+            android:id="@+id/about_fragment"
+            android:name="com.example.moviebuzz.ui.aboutfragment.AboutFragment"
+            android:label="AboutFragment"
+            >
+    </fragment>
+    <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.example.moviebuzz.ui.searchfragment.SearchFragment"
               android:label="SearchFragment"/>
     <fragment
-            android:id="@+id/movieDetail"
+            android:id="@+id/movie_detail_fragment"
             android:name="com.example.moviebuzz.ui.moviedetail.MovieDetailFragment"
             android:label="movie_detail_fragment"
             tools:layout="@layout/movie_detail_fragment"
@@ -40,7 +52,7 @@
                 />
         <action
                 android:id="@+id/action_movieDetail_self"
-                app:destination="@+id/movieDetail"
+                app:destination="@+id/movie_detail_fragment"
                 app:launchSingleTop="false"
                 >
             <argument

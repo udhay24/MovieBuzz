@@ -67,7 +67,6 @@ class MovieDetailViewModel(movieRepository: MovieRepository, movieId: Int) : Vie
         } else if (view is TextView) {
             view.maxLines = 3
             view.ellipsize = TextUtils.TruncateAt.END
-
         }
     }
 }

@@ -17,11 +17,11 @@
             android:id="@+id/nav_controller_fragment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/movie_fragment"
             app:defaultNavHost="true"
             app:navGraph="@navigation/main_navigation"
             app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -35,6 +35,18 @@
             android:visibility="visible"
             style="@style/BottomNavigation"
             app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            android:theme="?attr/actionBarTheme"
+            android:minHeight="?attr/actionBarSize"
+            android:id="@+id/toolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
