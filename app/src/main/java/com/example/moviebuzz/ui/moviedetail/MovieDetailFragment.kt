@@ -12,6 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.moviebuzz.R
 import com.example.moviebuzz.databinding.MovieDetailFragmentBinding
 import com.example.moviebuzz.network.NetworkStatus
+import com.example.moviebuzz.ui.mainactivity.MainActivity
 import com.example.moviebuzz.ui.moviefragment.MarginItemDecorator
 import kotlinx.android.synthetic.main.movie_detail_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -37,6 +38,12 @@ class MovieDetailFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel.similarMovies.observe(this, Observer {
             when (it.status) {
                 NetworkStatus.SUCCESS -> {
@@ -52,6 +59,9 @@ class MovieDetailFragment : Fragment() {
             }
         }
         )
-        return binding.root
+
+        viewModel.movieName.observe(this, Observer {
+            (activity as MainActivity).supportActionBar?.title = it
+        })
     }
 }

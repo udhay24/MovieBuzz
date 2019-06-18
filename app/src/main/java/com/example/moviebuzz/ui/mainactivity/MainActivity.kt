@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -13,12 +14,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val navController = findNavController(this, R.id.nav_controller_fragment)
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
+        navController = findNavController(this, R.id.nav_controller_fragment)
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         setupWithNavController(bottomNavigationView, navController)
         setupActionBarWithNavController(navController)
