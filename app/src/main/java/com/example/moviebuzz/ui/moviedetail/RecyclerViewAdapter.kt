@@ -31,8 +31,9 @@ class SimilarMoviesAdapter(
 
         private val posterImage: ImageView = view.findViewById(R.id.movie_poster)
         fun bind(position: Int) {
+
             posterImage.loadImageFromUrl(
-                BaseUrl.getPosterPath(similarMovies.results[position].poster_path)
+                BaseUrl.getPosterPath(similarMovies.results[position].poster_path ?: "Error Image")
             )
             view.setOnClickListener {
                 onClickListener.invoke(similarMovies.results[position].id)
