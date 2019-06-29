@@ -19,7 +19,6 @@ import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
