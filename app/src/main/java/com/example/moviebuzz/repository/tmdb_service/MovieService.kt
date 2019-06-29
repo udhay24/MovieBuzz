@@ -15,26 +15,26 @@ import retrofit2.http.Path
 
 interface MovieService {
     @GET("movie/popular")
-    fun getPopularMoviesAsync(): Deferred<PopularMovies>
+    suspend fun getPopularMovies(): Response<PopularMovies>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMoviesAsync(): Deferred<NowPlayingMovies>
+    suspend fun getNowPlayingMovies(): Response<NowPlayingMovies>
 
     @GET("movie/latest")
-    fun getLatestMoviesAsync(): Deferred<Response<LatestMovies>>
+    suspend fun getLatestMovies(): Response<LatestMovies>
 
     @GET("movie/top_rated")
-    fun getTopRatedMoviesAsync(): Deferred<TopRatedMovies>
+    suspend fun getTopRatedMovies(): Response<TopRatedMovies>
 
     @GET("movie/upcoming")
-    fun getUpComingMoviesAsync(): Deferred<UpComingMovies>
+    suspend fun getUpComingMovies(): Response<UpComingMovies>
 
     @GET("movie/{movie_id}")
-    fun getMovieDetailFromIdAsync(@Path("movie_id") id: Int): Deferred<Response<Movie>>
+    suspend fun getMovieDetailFromId(@Path("movie_id") id: Int): Response<Movie>
 
     @GET("movie/{movie_id}/reviews")
-    fun getMovieReviewsAsync(@Path("movie_id") movieId: Int): Deferred<Response<MovieReview>>
+    suspend fun getMovieReviews(@Path("movie_id") movieId: Int): Response<MovieReview>
 
     @GET("movie/{movie_id}/similar")
-    fun getSimilarMoviesAsync(@Path("movie_id") movieId: Int): Deferred<Response<SimilarMovies>>
+    suspend fun getSimilarMovies(@Path("movie_id") movieId: Int): Response<SimilarMovies>
 }

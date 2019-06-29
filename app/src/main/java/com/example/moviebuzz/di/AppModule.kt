@@ -27,7 +27,7 @@ val httpLoggingInterceptor: HttpLoggingInterceptor = {
 val okHttpClient: OkHttpClient = {
     OkHttpClient.Builder()
         .addInterceptor {
-            val newUrl = it.request().url()
+            val newUrl = it.request().url
                 .newBuilder()
                 .addQueryParameter("api_key", TMDB_API_KEY)
                 .build()
@@ -47,7 +47,6 @@ val retrofit: Retrofit = {
         .baseUrl("https://api.themoviedb.org/3/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 }.invoke()
 

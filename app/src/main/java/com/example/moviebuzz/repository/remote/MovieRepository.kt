@@ -19,11 +19,12 @@ import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.example.moviebuzz.repository.tmdb_service.MovieService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class MovieRepository constructor(private val movieService: MovieService)
-    :Repository, CoroutineScope by CoroutineScope(Dispatchers.Default){
+class MovieRepository constructor(private val movieService: MovieService) : Repository,
+    CoroutineScope by CoroutineScope(Dispatchers.IO) {
 
     fun fetchNowPlayingMovies(): LiveData<Resource<NowPlayingMovies>> {
         return object : NetworkBoundResource<NowPlayingMovies, NowPlayingMovies>() {
@@ -32,10 +33,12 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val nowPlayingLiveData = MutableLiveData<ApiResponse<NowPlayingMovies>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val nowPlayingMovie = movieService.getNowPlayingMoviesAsync().await()
-                        nowPlayingLiveData.postValue(
-                            ApiSuccessResponse(nowPlayingMovie, "")
-                        )
+                        val networkResponse = movieService.getNowPlayingMovies()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            nowPlayingLiveData.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         nowPlayingLiveData.postValue(ApiErrorResponse(exception.localizedMessage))
                     }
@@ -54,10 +57,12 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val popularMovieLiveData = MutableLiveData<ApiResponse<PopularMovies>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val popularMovie = movieService.getPopularMoviesAsync().await()
-                        popularMovieLiveData.postValue(
-                            ApiSuccessResponse(popularMovie, "")
-                        )
+                        val networkResponse = movieService.getPopularMovies()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            popularMovieLiveData.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         popularMovieLiveData.postValue(ApiErrorResponse(exception.localizedMessage))
                     }
@@ -76,8 +81,8 @@ class MovieRepository constructor(private val movieService: MovieService)
             override fun networkCall(): LiveData<ApiResponse<LatestMovies>> {
                 val latestMovieLiveData = MutableLiveData<ApiResponse<LatestMovies>>(ApiEmptyResponse())
                 launch {
-                    val response = movieService.getLatestMoviesAsync().await()
-                    Timber.v(response.raw().request().url().toString())
+                    val response = movieService.getLatestMovies()
+                    Timber.v(response.raw().request.url.toString())
                     if (response.isSuccessful) {
                         latestMovieLiveData.postValue(
                             ApiSuccessResponse(response.body()!!, "")
@@ -101,10 +106,12 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val topRatedMovieLiveData = MutableLiveData<ApiResponse<TopRatedMovies>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val topRatedMovies = movieService.getTopRatedMoviesAsync().await()
-                        topRatedMovieLiveData.postValue(
-                            ApiSuccessResponse(topRatedMovies, "")
-                        )
+                        val networkResponse = movieService.getTopRatedMovies()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            topRatedMovieLiveData.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         topRatedMovieLiveData.postValue(
                             ApiErrorResponse(exception.localizedMessage)
@@ -126,10 +133,12 @@ class MovieRepository constructor(private val movieService: MovieService)
                 val mutableLiveData = MutableLiveData<ApiResponse<UpComingMovies>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val upComingMovies = movieService.getUpComingMoviesAsync().await()
-                        mutableLiveData.postValue(
-                            ApiSuccessResponse(upComingMovies, "")
-                        )
+                        val networkResponse = movieService.getUpComingMovies()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            mutableLiveData.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         mutableLiveData.postValue(ApiErrorResponse(exception.localizedMessage))
                     }
@@ -147,7 +156,7 @@ class MovieRepository constructor(private val movieService: MovieService)
             override fun networkCall(): LiveData<ApiResponse<Movie>> {
                 val result = MutableLiveData<ApiResponse<Movie>>(ApiEmptyResponse())
                 launch {
-                    val networkResponse = movieService.getMovieDetailFromIdAsync(movieId).await()
+                    val networkResponse = movieService.getMovieDetailFromId(movieId)
                     if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
                         result.postValue(
                             ApiSuccessResponse(networkResponse.body()!!, "")
@@ -170,7 +179,7 @@ class MovieRepository constructor(private val movieService: MovieService)
             override fun networkCall(): LiveData<ApiResponse<MovieReview>> {
                 val result = MutableLiveData<ApiResponse<MovieReview>>(ApiEmptyResponse())
                 launch {
-                    val networkResponse = movieService.getMovieReviewsAsync(movieId).await()
+                    val networkResponse = movieService.getMovieReviews(movieId)
                     if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
                         result.postValue(
                             ApiSuccessResponse(networkResponse.body()!!, "")
@@ -194,7 +203,7 @@ class MovieRepository constructor(private val movieService: MovieService)
             override fun networkCall(): LiveData<ApiResponse<SimilarMovies>> {
                 val result = MutableLiveData<ApiResponse<SimilarMovies>>(ApiEmptyResponse())
                 launch {
-                    val networkResponse = movieService.getSimilarMoviesAsync(movieId).await()
+                    val networkResponse = movieService.getSimilarMovies(movieId)
                     if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
                         result.postValue(
                             ApiSuccessResponse(networkResponse.body()!!, "")
