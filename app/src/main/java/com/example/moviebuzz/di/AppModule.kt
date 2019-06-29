@@ -10,7 +10,6 @@ import com.example.moviebuzz.ui.moviedetail.MovieDetailViewModel
 import com.example.moviebuzz.ui.moviefragment.MovieViewModel
 import com.example.moviebuzz.ui.searchfragment.SearchViewModel
 import com.example.moviebuzz.ui.tvfragment.TvShowsViewModel
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.androidx.viewmodel.dsl.viewModel

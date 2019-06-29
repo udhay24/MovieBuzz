@@ -25,8 +25,12 @@ class TvRepository(private val tvService: TvService) : Repository,
                 val mutableLiveTvShows = MutableLiveData<ApiResponse<PopularTvShows>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val response = tvService.getPopulatTvShowsAsync().await()
-                        mutableLiveTvShows.postValue(ApiSuccessResponse(response, ""))
+                        val networkResponse = tvService.getPopulatTvShowsAsync()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            mutableLiveTvShows.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         mutableLiveTvShows.postValue(ApiErrorResponse(exception.message ?: "Unknown Error"))
                     }
@@ -46,10 +50,12 @@ class TvRepository(private val tvService: TvService) : Repository,
                 val tvShowsAiringTodayLiveData = MutableLiveData<ApiResponse<TvAiringToday>>(ApiEmptyResponse())
                 launch {
                     try {
-                        val tvShowsAiringToday = tvService.getTvAiringTodayAsync().await()
-                        tvShowsAiringTodayLiveData.postValue(
-                            ApiSuccessResponse(tvShowsAiringToday, "")
-                        )
+                        val networkResponse = tvService.getTvAiringTodayAsync()
+                        if (networkResponse.isSuccessful and (networkResponse.body() != null)) {
+                            tvShowsAiringTodayLiveData.postValue(
+                                ApiSuccessResponse(networkResponse.body()!!, "")
+                            )
+                        }
                     } catch (exception: Exception) {
                         tvShowsAiringTodayLiveData.postValue(
                             ApiErrorResponse(exception.message ?: "Unknown error")
