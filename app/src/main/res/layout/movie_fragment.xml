@@ -226,6 +226,7 @@
                         tools:listitem="@layout/single_image_layout"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
+                        tools:itemCount="3"
                         />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
