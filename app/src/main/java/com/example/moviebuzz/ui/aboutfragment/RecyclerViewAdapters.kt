@@ -1,4 +1,4 @@
-package com.example.moviebuzz.ui.searchfragment
+package com.example.moviebuzz.ui.aboutfragment
 
 import android.graphics.Rect
 import android.view.LayoutInflater
@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviebuzz.R
-import com.example.moviebuzz.generated.callback.OnClickListener
 import timber.log.Timber
-import java.util.zip.Inflater
 
 class YearAdapter(private val snapHelper: CenterSnapHelper): RecyclerView.Adapter<YearAdapter.YearViewHolder>() {
 
