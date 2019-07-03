@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.moviebuzz.utils.loadImageFromUrl
+import kotlinx.android.synthetic.main.search_fragment.*
 import org.koin.android.ext.android.inject
 
 
@@ -24,5 +26,8 @@ class SearchFragment : Fragment() {
         return inflater.inflate(com.example.moviebuzz.R.layout.search_fragment, container, false)
     }
 
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        demo_image.loadImageFromUrl("https://picsum.photos/id/1075/300/200")
+    }
 }
