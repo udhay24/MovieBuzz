@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.network.BaseUrl
+import com.example.data.repository.model.movie.NowPlayingMovies
+import com.example.data.repository.model.movie.PopularMovies
+import com.example.data.repository.model.movie.TopRatedMovies
+import com.example.data.repository.model.movie.UpComingMovies
 import com.example.moviebuzz.R
-import com.example.moviebuzz.network.BaseUrl
-import com.example.moviebuzz.repository.model.movie.NowPlayingMovies
-import com.example.moviebuzz.repository.model.movie.PopularMovies
-import com.example.moviebuzz.repository.model.movie.TopRatedMovies
-import com.example.moviebuzz.repository.model.movie.UpComingMovies
 import com.squareup.picasso.Picasso
 
 class PopularMoviesAdapter(

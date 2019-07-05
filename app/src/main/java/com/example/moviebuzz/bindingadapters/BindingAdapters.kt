@@ -7,9 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.network.BaseUrl
 import com.example.moviebuzz.R
 import com.example.moviebuzz.customview.CommonRecyclerAdapter
-import com.example.moviebuzz.network.BaseUrl
 import com.example.moviebuzz.ui.moviefragment.MarginItemDecorator
 import com.squareup.picasso.Picasso
 import timber.log.Timber

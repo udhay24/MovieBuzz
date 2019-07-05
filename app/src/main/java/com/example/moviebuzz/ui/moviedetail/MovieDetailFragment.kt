@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.data.network.NetworkStatus
 import com.example.moviebuzz.R
 import com.example.moviebuzz.databinding.MovieDetailFragmentBinding
-import com.example.moviebuzz.network.NetworkStatus
 import com.example.moviebuzz.ui.mainactivity.MainActivity
 import com.example.moviebuzz.ui.moviefragment.MarginItemDecorator
 import kotlinx.android.synthetic.main.movie_detail_fragment.*

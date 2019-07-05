@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.data.network.BaseUrl
+import com.example.data.repository.model.movie.SimilarMovies
 import com.example.moviebuzz.R
-import com.example.moviebuzz.network.BaseUrl
-import com.example.moviebuzz.repository.model.movie.SimilarMovies
 import com.example.moviebuzz.utils.loadImageFromUrl
 
 class SimilarMoviesAdapter(

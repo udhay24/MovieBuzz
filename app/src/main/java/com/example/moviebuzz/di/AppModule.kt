@@ -1,10 +1,10 @@
 package com.example.moviebuzz.di
 
-import com.example.moviebuzz.repository.remote.MovieRepository
-import com.example.moviebuzz.repository.remote.TMDB_API_KEY
-import com.example.moviebuzz.repository.remote.TvRepository
-import com.example.moviebuzz.repository.tmdb_service.MovieService
-import com.example.moviebuzz.repository.tmdb_service.TvService
+import com.example.data.repository.remote.MovieRepository
+import com.example.data.repository.remote.TMDB_API_KEY
+import com.example.data.repository.remote.TvRepository
+import com.example.data.repository.tmdb_service.MovieService
+import com.example.data.repository.tmdb_service.TvService
 import com.example.moviebuzz.ui.aboutfragment.AboutViewModel
 import com.example.moviebuzz.ui.moviedetail.MovieDetailViewModel
 import com.example.moviebuzz.ui.moviefragment.MovieViewModel

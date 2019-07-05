@@ -2,9 +2,9 @@ package com.example.moviebuzz.ui.moviefragment
 
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import com.example.moviebuzz.network.BaseUrl
-import com.example.moviebuzz.network.NetworkStatus
-import com.example.moviebuzz.repository.remote.MovieRepository
+import com.example.data.network.BaseUrl
+import com.example.data.network.NetworkStatus
+import com.example.data.repository.remote.MovieRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
