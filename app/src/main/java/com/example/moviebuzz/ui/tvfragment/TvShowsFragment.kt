@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.data.network.NetworkStatus
-import com.example.data.repository.model.tvshows.PopularTvShows
+import com.example.domain.entities.model.tvshows.PopularTvShows
 import com.example.moviebuzz.R
 import kotlinx.android.synthetic.main.tv_shows_fragment.*
 import org.koin.android.ext.android.inject

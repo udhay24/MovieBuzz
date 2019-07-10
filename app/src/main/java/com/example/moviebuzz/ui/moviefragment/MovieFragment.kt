@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.data.network.NetworkStatus
-import com.example.data.repository.model.movie.LatestMovies
-import com.example.data.repository.model.movie.NowPlayingMovies
-import com.example.data.repository.model.movie.PopularMovies
-import com.example.data.repository.model.movie.TopRatedMovies
-import com.example.data.repository.model.movie.UpComingMovies
+import com.example.domain.entities.model.movie.LatestMovies
+import com.example.domain.entities.model.movie.NowPlayingMovies
+import com.example.domain.entities.model.movie.PopularMovies
+import com.example.domain.entities.model.movie.TopRatedMovies
+import com.example.domain.entities.model.movie.UpComingMovies
 import com.example.moviebuzz.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.movie_fragment.*

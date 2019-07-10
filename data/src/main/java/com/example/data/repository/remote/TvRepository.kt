@@ -8,9 +8,9 @@ import com.example.data.network.ApiResponse
 import com.example.data.network.ApiSuccessResponse
 import com.example.data.network.NetworkBoundResource
 import com.example.data.network.Resource
-import com.example.data.repository.model.tvshows.PopularTvShows
-import com.example.data.repository.model.tvshows.TvAiringToday
 import com.example.data.repository.tmdb_service.TvService
+import com.example.domain.entities.model.tvshows.PopularTvShows
+import com.example.domain.entities.model.tvshows.TvAiringToday
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

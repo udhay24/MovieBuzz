@@ -16,6 +16,5 @@ internal abstract class UseCases<out Type, in Params> where Params : Any {
             val response = withContext(Dispatchers.Default) { run(params) }
             withContext(Dispatchers.Main) { onResult(response) }
         }
-
     }
 }

@@ -30,6 +30,9 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
 
+    //include domain layer
+    implementation project(':domain')
+
     //Networking Library
     implementation 'com.squareup.okhttp3:okhttp:4.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'

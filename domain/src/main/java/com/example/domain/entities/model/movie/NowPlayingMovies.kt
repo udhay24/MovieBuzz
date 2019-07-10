@@ -1,12 +1,17 @@
-package com.example.data.repository.model.movie
+package com.example.domain.entities.model.movie
 
-data class UpComingMovies(
+data class NowPlayingMovies(
     val dates: Dates,
     val page: Int,
     val results: List<Result>,
     val total_pages: Int,
     val total_results: Int
 ) {
+    data class Dates(
+        val maximum: String,
+        val minimum: String
+    )
+
     data class Result(
         val adult: Boolean,
         val backdrop_path: String,
@@ -22,10 +27,5 @@ data class UpComingMovies(
         val video: Boolean,
         val vote_average: Double,
         val vote_count: Int
-    )
-
-    data class Dates(
-        val maximum: String,
-        val minimum: String
     )
 }

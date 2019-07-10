@@ -1,7 +1,7 @@
 package com.example.data.repository.tmdb_service
 
-import com.example.data.repository.model.tvshows.PopularTvShows
-import com.example.data.repository.model.tvshows.TvAiringToday
+import com.example.domain.entities.model.tvshows.PopularTvShows
+import com.example.domain.entities.model.tvshows.TvAiringToday
 import retrofit2.Response
 import retrofit2.http.GET
 

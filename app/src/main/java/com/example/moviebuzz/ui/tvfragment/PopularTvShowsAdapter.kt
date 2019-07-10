@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.data.repository.model.tvshows.PopularTvShows
+import com.example.domain.entities.model.tvshows.PopularTvShows
 import com.example.moviebuzz.R
 import com.squareup.picasso.Picasso
 

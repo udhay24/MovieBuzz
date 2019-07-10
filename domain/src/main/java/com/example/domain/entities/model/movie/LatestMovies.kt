@@ -1,4 +1,4 @@
-package com.example.data.repository.model.movie
+package com.example.domain.entities.model.movie
 
 data class LatestMovies(
     val adult: Boolean,

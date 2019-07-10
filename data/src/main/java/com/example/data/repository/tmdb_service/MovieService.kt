@@ -1,13 +1,13 @@
 package com.example.data.repository.tmdb_service
 
-import com.example.data.repository.model.movie.LatestMovies
-import com.example.data.repository.model.movie.Movie
-import com.example.data.repository.model.movie.MovieReview
-import com.example.data.repository.model.movie.NowPlayingMovies
-import com.example.data.repository.model.movie.PopularMovies
-import com.example.data.repository.model.movie.SimilarMovies
-import com.example.data.repository.model.movie.TopRatedMovies
-import com.example.data.repository.model.movie.UpComingMovies
+import com.example.domain.entities.model.movie.LatestMovies
+import com.example.domain.entities.model.movie.Movie
+import com.example.domain.entities.model.movie.MovieReview
+import com.example.domain.entities.model.movie.NowPlayingMovies
+import com.example.domain.entities.model.movie.PopularMovies
+import com.example.domain.entities.model.movie.SimilarMovies
+import com.example.domain.entities.model.movie.TopRatedMovies
+import com.example.domain.entities.model.movie.UpComingMovies
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

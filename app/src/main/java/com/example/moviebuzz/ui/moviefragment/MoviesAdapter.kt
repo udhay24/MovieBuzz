@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.data.network.BaseUrl
-import com.example.data.repository.model.movie.NowPlayingMovies
-import com.example.data.repository.model.movie.PopularMovies
-import com.example.data.repository.model.movie.TopRatedMovies
-import com.example.data.repository.model.movie.UpComingMovies
+import com.example.domain.entities.model.movie.NowPlayingMovies
+import com.example.domain.entities.model.movie.PopularMovies
+import com.example.domain.entities.model.movie.TopRatedMovies
+import com.example.domain.entities.model.movie.UpComingMovies
 import com.example.moviebuzz.R
 import com.squareup.picasso.Picasso
 
