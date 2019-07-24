@@ -65,7 +65,7 @@ data class ApiSuccessResponse<T>(
 ) : ApiResponse<T>() {
     constructor(body: T, linkHeader: String?) : this(
         body = body,
-        links = linkHeader?.extractLinks() ?: emptyMap()
+        links = emptyMap()
     )
 
 }
