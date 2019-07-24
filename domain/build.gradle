@@ -7,6 +7,10 @@ dependencies {
 
     //kotlin Coroutines support for android
     api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0-M2'
+
+    //Java to JSON library
+    api 'com.google.code.gson:gson:2.8.5'
+
 }
 
 sourceCompatibility = "8"
